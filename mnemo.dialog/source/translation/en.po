@@ -1,0 +1,19 @@
+#: scada/mnemo/dialog/MProtection.js
+msgid "The control is blocked"
+msgstr ""
+
+#: scada/mnemo/dialog/MConfirmation.js
+msgid "Are you sure"
+msgstr ""
+
+#: scada/mnemo/dialog/signal/ResetAlarmsGroup.js
+msgid "Reset alarm"
+msgstr ""
+
+#: scada/mnemo/dialog/signal/ControlVE.js
+msgid "control state"
+msgstr ""
+
+#: scada/mnemo/dialog/signal/ControlVE.js
+msgid "work state"
+msgstr ""

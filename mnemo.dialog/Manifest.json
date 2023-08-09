@@ -1,0 +1,35 @@
+{
+ "$schema": "https://qooxdoo.org/schema/Manifest-2-0-0.json",
+  "info" :
+  {
+    "name" : "scada.mnemo.dialog",
+
+    "summary" : "Mnemo Dialogs",
+    "description" : "",
+
+    "homepage" : "",
+
+    "license" : "Private",
+    "authors" : [
+  {
+    "name": "Dmitrii Zolotov (goldim)",
+    "email": "zolotovdy@ugpa.ru"
+  }
+],
+
+    "version" : "1.0.0"
+  },
+
+  "provides" :
+  {
+    "namespace"   : "scada.mnemo.dialog",
+    "encoding"    : "utf-8",
+    "class"       : "source/class",
+    "resource"    : "source/resource",
+    "translation" : "source/translation"
+  },
+
+  "requires": {
+    "@qooxdoo/framework": "^7.5.1"
+  }
+}

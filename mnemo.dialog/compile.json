@@ -1,0 +1,32 @@
+{
+  "$schema": "https://qooxdoo.org/schema/compile-1-0-0.json",
+  "targets": [
+    {
+      "type": "source",
+      "outputPath": "compiled/source",
+      "bundle": {
+        "include": "qx.*"
+      }
+    },
+    {
+      "type": "build",
+      "outputPath": "compiled/build"
+    }
+  ],
+  "defaultTarget": "source",
+  "locales": ["en","ru"],
+
+  "applications": [
+    {
+      "class": "scada.mnemo.dialog.demo.Application",
+      "theme": "scada.mnemo.dialog.theme.Theme",
+      "name": "scada.mnemo.dialog"
+    }
+  ],
+
+  "libraries": [
+    ".",
+    "../widget",
+    "../util"
+  ]
+}

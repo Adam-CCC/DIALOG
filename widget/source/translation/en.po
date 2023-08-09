@@ -1,0 +1,59 @@
+#. NO LONGER USED
+msgid "Yesterday"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Interval"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Today"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Current minute"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Current hour"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Since"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Previous minute"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Previous hour"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Previous day"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Host"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Port"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Connect"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Are you sure"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Yes"
+msgstr ""
+
+#. NO LONGER USED
+msgid "No"
+msgstr ""

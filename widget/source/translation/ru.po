@@ -1,0 +1,55 @@
+#. NO LONGER USED
+msgid "Yesterday"
+msgstr "Вчера"
+
+#. NO LONGER USED
+msgid "Interval"
+msgstr "Интервал"
+
+#. NO LONGER USED
+msgid "Today"
+msgstr "Сегодня"
+
+#. NO LONGER USED
+msgid "Current minute"
+msgstr "Текущая минута"
+
+#. NO LONGER USED
+msgid "Current hour"
+msgstr "Текущий час"
+
+#. NO LONGER USED
+msgid "Since"
+msgstr "С"
+
+#. NO LONGER USED
+msgid "Previous minute"
+msgstr "Предыдущая минута"
+
+#. NO LONGER USED
+msgid "Previous hour"
+msgstr "Предыдущий час"
+
+#. NO LONGER USED
+msgid "Host"
+msgstr "Хост"
+
+#. NO LONGER USED
+msgid "Port"
+msgstr "Порт"
+
+#. NO LONGER USED
+msgid "Connect"
+msgstr "Подключиться"
+
+#. NO LONGER USED
+msgid "Are you sure"
+msgstr "Вы уверены"
+
+#. NO LONGER USED
+msgid "Yes"
+msgstr "Да"
+
+#. NO LONGER USED
+msgid "No"
+msgstr "Нет"
