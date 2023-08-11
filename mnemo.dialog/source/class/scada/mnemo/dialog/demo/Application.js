@@ -138,19 +138,13 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
 
       //HeatResist
       const heatResist = new scada.mnemo.dialog.HeatResist();
-      const settings = {
+      heatResist.initSettingsFromJson({
         temp_classes: ["High", "Medium", "Low"],
-        update_values: [100, 50, 10],
-        protection: {
-          key: "aaa",
-          show_message: true
-        },
-        confirmation: true,
-        center: true,
-        caption: "Temperature Control"
-      };
-      heatResist.initSettingsFromJson(settings);
-      // heatResist.show()
+        update_values: [100, 50, 10]
+      });
+      
+      //VButton
+      const vbutton = new scada.widget.window.VButtonPanel();
 
       const dlg = new scada.mnemo.dialog.Dialog();
       dlg.moveTo(300, 500);
@@ -176,8 +170,10 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
 
       const openBtn2 = new qx.ui.form.Button("Open dialog2");
       openBtn2.addListener("execute", function () {
-        heatResist.show()
-      }, this);      
+        heatResist.setCenter(true);
+        heatResist.setConfirmation(true)
+        console.log(heatResist.getOutputKey());
+      }, this);
       windowsGroupBox.add(openBtn2);
 
       dialogControlContainer.add(windowsGroupBox);
