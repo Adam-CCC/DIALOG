@@ -34,7 +34,7 @@ qx.Class.define("scada.mnemo.dialog.HeatResist", {
         __createWindow(){
             const wm1 = new scada.widget.window.VButtonPanel();
             wm1.addListener("outData", this._onOutputData, this);
-            wm1.show()
+            wm1.show();
             return wm1;
         },
 

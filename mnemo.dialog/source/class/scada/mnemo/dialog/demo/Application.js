@@ -156,25 +156,43 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       const windowsGroupBox = new qx.ui.groupbox.GroupBox("Окна");
       windowsGroupBox.setLayout(new qx.ui.layout.VBox());
 
-      const closeBtn = new qx.ui.form.Button("Close dialog");
-      closeBtn.addListener("execute", function () {
-        dialog.hide();
-      }, this);
-      windowsGroupBox.add(closeBtn);
-
       const openBtn = new qx.ui.form.Button("Open dialog");
       openBtn.addListener("execute", function () {
         dialog.show();
       }, this);
       windowsGroupBox.add(openBtn);
 
-      const openBtn2 = new qx.ui.form.Button("Open dialog2");
-      openBtn2.addListener("execute", function () {
-        heatResist.setCenter(true);
-        heatResist.setConfirmation(true)
-        console.log(heatResist.getOutputKey());
+      const calcDecimal = new qx.ui.form.Button("Calculate");
+      calcDecimal.addListener("execute", function () {
+        const keyDecimal = new scada.mnemo.dialog.KeyboardDecimal();
+        keyDecimal.setCenter(true);
+        keyDecimal.show();
       }, this);
-      windowsGroupBox.add(openBtn2);
+      windowsGroupBox.add(calcDecimal);
+
+      const question = new qx.ui.form.Button("Question");
+      question.addListener("execute", function () {
+        const keyDecimal = new scada.mnemo.dialog.Question();
+        keyDecimal.setCenter(true);
+        keyDecimal.show();
+      }, this);
+      windowsGroupBox.add(question);
+
+      const questionSwitch = new qx.ui.form.Button("Question switch");
+      questionSwitch.addListener("execute", function () {
+        const keyDecimal = new scada.mnemo.dialog.QuestionSwitch();
+        keyDecimal.setCenter(true);
+        keyDecimal.show();
+      }, this);
+      windowsGroupBox.add(questionSwitch);
+
+      const tempShow = new qx.ui.form.Button("Temperature");
+      tempShow.addListener("execute", function () {
+        const keyDecimal = new scada.mnemo.dialog.TempShow();
+        keyDecimal.setCenter(true);
+        keyDecimal.show();
+      }, this);
+      windowsGroupBox.add(tempShow);
 
       dialogControlContainer.add(windowsGroupBox);
 
@@ -182,23 +200,27 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       const configGroupBox = new qx.ui.groupbox.GroupBox("Конфигурация");
       configGroupBox.setLayout(new qx.ui.layout.VBox());
 
-      const setValueButtonZero = new qx.ui.form.Button("Set Zero");
-      setValueButtonZero.addListener("execute", function () {
-        dialog.setData({ "question": 0 });
-      }, this);
+      const setValueButtonZero = new qx.ui.form.RadioButton("Set Zero");
       configGroupBox.add(setValueButtonZero);
 
-      const setValueButtonOne = new qx.ui.form.Button("Set One");
-      setValueButtonOne.addListener("execute", function (){
-        dialog.setData({ "question": 1 });
-      }, this);
+      const setValueButtonOne = new qx.ui.form.RadioButton("Set One");
       configGroupBox.add(setValueButtonOne);
 
-      const setVEState = new qx.ui.form.Button("Set VE State");
-      setVEState.addListener("execute", function () {
-        dialog.setData({ "bbb": 1 });
-      }, this);
+      const setVEState = new qx.ui.form.RadioButton("Set VE State");
       configGroupBox.add(setVEState);
+
+      var managerConf = new qx.ui.form.RadioGroup(setValueButtonZero, setValueButtonOne, setVEState);
+      managerConf.addListener("changeSelection", function () {
+        const selectedButton = e.getData()[0];
+        const value = selectedButton.getLabel();
+        if (value == "Set Zero") {
+          dialog.setData({ "question": 0 });
+        } else if (value == "Set one") {
+          dialog.setData({ "question": 1 });
+        } else if (value == "Set VE State") {
+          dialog.setData({ "bbb": 1 });
+        }
+      }, this);
 
       dialogControlContainer.add(configGroupBox);
 
@@ -206,17 +228,24 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       const manageWindowsGroupBox = new qx.ui.groupbox.GroupBox("Управление окнами");
       manageWindowsGroupBox.setLayout(new qx.ui.layout.VBox());
 
-      const setProtectionBtn = new qx.ui.form.Button("Protection");
-      setProtectionBtn.addListener("execute", function () {
-        dialog.setData({ "aaa": 1 });
-      }, this);
+      const setProtectionBtn = new qx.ui.form.RadioButton("Protection");
       manageWindowsGroupBox.add(setProtectionBtn);
 
-      const removeProtectionBtn = new qx.ui.form.Button("Remove Protection");
-      removeProtectionBtn.addListener("execute", function () {
-        dialog.setData({ "aaa": 0 });
-      }, this);
+      const removeProtectionBtn = new qx.ui.form.RadioButton("Remove protection");
       manageWindowsGroupBox.add(removeProtectionBtn);
+
+      const manager = new qx.ui.form.RadioGroup(setProtectionBtn, removeProtectionBtn);
+      manager.setSelection([removeProtectionBtn]);
+
+      manager.addListener("changeSelection", function(e){
+        const selectedButton = e.getData()[0];
+        const value = selectedButton.getLabel()
+        if (value == "Protection") {
+          dialog.setData({ "aaa": 1 });
+        } else {
+          dialog.setData({ "aaa": 0 });
+        }
+      }, this)
 
       dialogControlContainer.add(manageWindowsGroupBox);
       this.getRoot().add(dialogControlContainer, { top: 0, left: 0 });
