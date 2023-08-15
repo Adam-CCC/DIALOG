@@ -19,7 +19,7 @@ qx.Class.define("scada.mnemo.dialog.Dialog", {
 
     destruct() {
         this._disposeObjects("_dialogStack");
-        if (this._mainWindow) {
+        if (this._mainWindow){
             this._mainWindow.dispose();
             this._mainWindow = null;
         }

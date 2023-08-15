@@ -196,6 +196,28 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
 
       dialogControlContainer.add(windowsGroupBox);
 
+      const timeGroupBox = new qx.ui.groupbox.GroupBox("Время");
+      timeGroupBox.setLayout(new qx.ui.layout.VBox());
+
+      var popup = new qx.ui.popup.Popup(new qx.ui.layout.Canvas()).set({
+        backgroundColor: "#FFFAD3",
+        padding: [2, 1],
+        offset: 3,
+        offsetBottom: 20,
+      });
+      popup.add(new scada.widget.period.PickerWithButton());
+      const view = new scada.widget.clock.View();
+      timeGroupBox.add(view);
+
+      const but = new qx.ui.form.Button("Время");
+      but.addListener("pointerdown", function(e){
+
+        popup.show();
+      })
+      timeGroupBox.add(but);
+
+      dialogControlContainer.add(timeGroupBox);
+
       //Second GroupBox
       const configGroupBox = new qx.ui.groupbox.GroupBox("Конфигурация");
       configGroupBox.setLayout(new qx.ui.layout.VBox());
@@ -252,3 +274,4 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
     }
   }
 });
+

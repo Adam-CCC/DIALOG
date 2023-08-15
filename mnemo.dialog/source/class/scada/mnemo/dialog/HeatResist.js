@@ -19,12 +19,6 @@ qx.Class.define("scada.mnemo.dialog.HeatResist", {
             if (updateValues){
                 this._updateValues = updateValues.slice();
             }
-            this._getSortsAndUpdate();
-        },
-
-        _getSortsAndUpdate(){
-            console.log(this._sorts);
-            console.log(this._updateValues);
         },
 
         _createWidgetContent(){
@@ -34,16 +28,13 @@ qx.Class.define("scada.mnemo.dialog.HeatResist", {
         __createWindow(){
             const wm1 = new scada.widget.window.VButtonPanel();
             wm1.addListener("outData", this._onOutputData, this);
-            wm1.show();
             return wm1;
         },
 
         _onOutputData(e){
-            console.log("getData " + data)
             const data = {};
             const i = this._sorts.indexOf(e.getData());
             data[this.getOutputKey()] = this._updateValues[i];
-            
             this.setOutData(data);
         }
     }

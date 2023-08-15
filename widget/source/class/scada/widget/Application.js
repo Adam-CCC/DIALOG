@@ -52,20 +52,21 @@ qx.Class.define("scada.widget.Application",
         Below is your actual application code...
       -------------------------------------------------------------------------
       */
-      // Create an instance of the Calculator window widget
 
-      let calc = new scada.widget.Calculator();
-      this.getRoot().add(calc, {left: 10, top: 10});
+      // Create a button
+      var button1 = new qx.ui.form.Button("Click me", "scada/widget/test.png");
 
-      var clockWidget = new scada.widget.clock.Inline();
-      this.getRoot().add(clockWidget.getView(), {left: 10, top: 250});
-      
-      let dateField = new scada.widget.period.PickerWithButton();
-      this.getRoot().add(dateField, {left: 10, top: 340});
+      // Document is the application root
+      var doc = this.getRoot();
 
-      let time = new scada.widget.window.Place();
-      time.moveTo(400, 400);
-      time.open();
+      // Add button to document at fixed coordinates
+      doc.add(button1, {left: 100, top: 50});
+
+      // Add an event listener
+      button1.addListener("execute", function() {
+        /* eslint no-alert: "off" */
+        alert("Hello World!");
+      });
     }
   }
 });

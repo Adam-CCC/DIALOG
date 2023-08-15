@@ -55,24 +55,14 @@ qx.Class.define("scada.mnemo.dialog.signal.ControlVE", {
         __createControlVEButton(){
             const button = new qx.ui.form.Button("Управление ВЭ");
             button.addListener("execute", this._onPressControlVEButton, this);
-            button.setWidth(200)
-            return button;
-        },
-
-        __createCloseButton(){
-            const button = new qx.ui.form.Button("Закрыть");
-            button.addListener("execute", this._onWindowDeny, this);
-            button.set({textColor: "#DF1B1B"});
-            button.setWidth(200);
             return button;
         },
 
         __createAndAddVEBlock(){
-            const layout = new qx.ui.layout.VBox();
+            const layout = new qx.ui.layout.Flow();
             layout.setAlignX("center");
             const block = new qx.ui.container.Composite(layout);
             block.add(this.__createControlVEButton());
-            block.add(this. __createCloseButton());
             return block;
         },
 
