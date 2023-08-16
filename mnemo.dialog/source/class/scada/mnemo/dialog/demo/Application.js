@@ -153,7 +153,7 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       const dialogControlContainer = new qx.ui.container.Composite(new qx.ui.layout.VBox());
 
       //First GroupBox
-      const windowsGroupBox = new qx.ui.groupbox.GroupBox("Окна");
+      const windowsGroupBox = new qx.ui.groupbox.GroupBox("Диалоги");
       windowsGroupBox.setLayout(new qx.ui.layout.VBox());
 
       const openBtn = new qx.ui.form.Button("Open dialog");
@@ -194,25 +194,33 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       }, this);
       windowsGroupBox.add(tempShow);
 
+      const winConect = new scada.widget.window.connection.Window();
+      const connectionForm = new qx.ui.form.Button("Connection");
+      connectionForm.addListener("execute", function () {
+        winConect.createForm();
+      }, this);
+      windowsGroupBox.add(connectionForm);
+
       dialogControlContainer.add(windowsGroupBox);
 
       const timeGroupBox = new qx.ui.groupbox.GroupBox("Время");
       timeGroupBox.setLayout(new qx.ui.layout.VBox());
 
-      var popup = new qx.ui.popup.Popup(new qx.ui.layout.Canvas()).set({
-        backgroundColor: "#FFFAD3",
-        padding: [2, 1],
-        offset: 3,
-        offsetBottom: 20,
-      });
-      popup.add(new scada.widget.period.PickerWithButton());
-      const view = new scada.widget.clock.View();
-      timeGroupBox.add(view);
+
+      const pickerWithButton = new scada.widget.period.PickerWithButton();
+      const winPickerWithButton = new qx.ui.window.Window();
+      winPickerWithButton.setLayout(new qx.ui.layout.VBox(0));
+      winPickerWithButton.setShowMaximize(false);
+      winPickerWithButton.setShowMinimize(false);
+      winPickerWithButton.add(pickerWithButton);
+
+      const views = new scada.widget.clock.Inline();
+      timeGroupBox.add(views.getView());
 
       const but = new qx.ui.form.Button("Время");
-      but.addListener("pointerdown", function(e){
-
-        popup.show();
+      but.addListener("click", function(){
+        winPickerWithButton.moveTo(200, 300);
+        winPickerWithButton.open();
       })
       timeGroupBox.add(but);
 
