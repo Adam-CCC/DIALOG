@@ -8,11 +8,11 @@
 
 ************************************************************************ */
 
-qx.Theme.define("scada.theme.Font",
+qx.Theme.define("scada.config.theme.Appearance",
 {
-  extend : qx.theme.indigo.Font,
+  extend : qx.theme.indigo.Appearance,
 
-  fonts :
+  appearances :
   {
   }
 });

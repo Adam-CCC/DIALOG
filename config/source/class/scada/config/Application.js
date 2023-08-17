@@ -9,11 +9,11 @@
 ************************************************************************ */
 
 /**
- * This is the main application class of "scada"
+ * This is the main application class of "config"
  *
- * @asset(scada/*)
+ * @asset(config/*)
  */
-qx.Class.define("scada.Application",
+qx.Class.define("scada.config.Application",
 {
   extend : qx.application.Standalone,
 
@@ -54,7 +54,7 @@ qx.Class.define("scada.Application",
       */
 
       // Create a button
-      var button1 = new qx.ui.form.Button("Click me", "scada/test.png");
+      var button1 = new qx.ui.form.Button("Click me", "config/test.png");
 
       // Document is the application root
       var doc = this.getRoot();
@@ -62,10 +62,10 @@ qx.Class.define("scada.Application",
       // Add button to document at fixed coordinates
       doc.add(button1, {left: 100, top: 50});
 
+
       // Add an event listener
       button1.addListener("execute", function() {
         /* eslint no-alert: "off" */
-        alert("Hello World!");
       });
     }
   }

@@ -8,14 +8,14 @@
 
 ************************************************************************ */
 
-qx.Theme.define("scada.theme.Theme",
+qx.Theme.define("scada.config.theme.Theme",
 {
   meta :
   {
-    color : scada.theme.Color,
-    decoration : scada.theme.Decoration,
-    font : scada.theme.Font,
+    color : scada.config.theme.Color,
+    decoration : scada.config.theme.Decoration,
+    font : scada.config.theme.Font,
     icon : qx.theme.icon.Tango,
-    appearance : scada.theme.Appearance
+    appearance : scada.config.theme.Appearance
   }
 });

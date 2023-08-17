@@ -20,9 +20,9 @@
   },
   "applications": [
     {
-      "class": "scada.Application",
-      "theme": "scada.theme.Theme",
-      "name": "scada",
+      "class": "scada.config.Application",
+      "theme": "scada.config.theme.Theme",
+      "name": "config",
       "bootPath": "source/boot"
     }
   ]

@@ -142,9 +142,6 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
         temp_classes: ["High", "Medium", "Low"],
         update_values: [100, 50, 10]
       });
-      
-      //VButton
-      const vbutton = new scada.widget.window.VButtonPanel();
 
       const dlg = new scada.mnemo.dialog.Dialog();
       dlg.moveTo(300, 500);
@@ -163,8 +160,8 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       windowsGroupBox.add(openBtn);
 
       const calcDecimal = new qx.ui.form.Button("Calculate");
+      const keyDecimal = new scada.mnemo.dialog.KeyboardDecimal();
       calcDecimal.addListener("execute", function () {
-        const keyDecimal = new scada.mnemo.dialog.KeyboardDecimal();
         keyDecimal.setCenter(true);
         keyDecimal.show();
       }, this);
@@ -194,12 +191,41 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       }, this);
       windowsGroupBox.add(tempShow);
 
-      const winConect = new scada.widget.window.connection.Window();
-      const connectionForm = new qx.ui.form.Button("Connection");
-      connectionForm.addListener("execute", function () {
-        winConect.createForm();
+      const dlgSure = new scada.widget.window.confirm.Sure();
+      const sure = new qx.ui.form.Button("Sure");
+      sure.addListener("execute", function () {
+        dlgSure.open();
       }, this);
-      windowsGroupBox.add(connectionForm);
+      windowsGroupBox.add(sure);
+
+      const dlgDouble = new scada.widget.window.confirm.Double();
+      const double = new qx.ui.form.Button("Double question");
+      double.addListener("execute", function () {
+        dlgDouble.open();
+      }, this);
+      windowsGroupBox.add(double);
+      
+      // const dlgPopup = new scada.widget.window.connection.Window();
+      // const winPopup = new qx.ui.form.Button("Popup");
+      // winPopup.addListener("execute", function () {
+      //   dlgPopup.show();
+      // }, this);
+      // windowsGroupBox.add(winPopup);
+
+      // const vbutt = new scada.widget.window.VButtonPanel();
+      // const verticalButt = new qx.ui.form.Button("Popup");
+      // verticalButt.addListener("execute", function () {
+      //   vbutt.add({"asd":"aaa"});
+      // }, this);
+      // windowsGroupBox.add(verticalButt);
+
+      // const content = "scada/mnemo/dialog/resource/scada/mnemo/dialog/test.png"
+      // const viewPor = new scada.widget.zoom.ViewPort(content, true);
+      // const viewZoom = new qx.ui.form.Button("Popup");
+      // viewZoom.addListener("execute", function () {
+      //   viewPor
+      // }, this);
+      // windowsGroupBox.add(viewZoom);
 
       dialogControlContainer.add(windowsGroupBox);
 

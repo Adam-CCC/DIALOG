@@ -2,7 +2,7 @@
  "$schema": "https://qooxdoo.org/schema/Manifest-2-0-0.json",
   "info" :
   {
-    "name" : "scada",
+    "name" : "config",
     "summary" : "undefined",
     "description" : "undefined",
     "homepage" : "undefined",
@@ -13,7 +13,7 @@
 
   "provides" :
   {
-    "namespace"   : "scada",
+    "namespace"   : "config",
     "encoding"    : "utf-8",
     "class"       : "source/class",
     "resource"    : "source/resource",
@@ -21,6 +21,6 @@
   },
 
   "requires": {
-    "@qooxdoo/framework": "^7.5.0"
+    "@qooxdoo/framework": "^7.1.0"
   }
 }

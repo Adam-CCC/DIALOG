@@ -1,6 +1,6 @@
 qx.Class.define("scada.config.settings.Manager", {
-    extend : qx.core.Object,
     type: "singleton",
+    extend : qx.core.Object,
 
     properties : {
         optValue: {

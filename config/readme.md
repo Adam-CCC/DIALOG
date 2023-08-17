@@ -1,4 +1,4 @@
-# scada
+# config
 
 undefined
 
