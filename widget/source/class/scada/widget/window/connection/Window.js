@@ -70,7 +70,7 @@ qx.Class.define("scada.widget.window.connection.Window", {
                 this.hide();
             }, this);
         },
-        
+
         __getDataFromModel(model){
             const host = model.getHost();
             const port = model.getPort();
