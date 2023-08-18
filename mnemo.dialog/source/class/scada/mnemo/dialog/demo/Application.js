@@ -45,6 +45,16 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
 
       qx.theme.iconfont.LoadMaterialIcons;
 
+      var border = new qx.ui.decoration.Decorator().set({
+        width: 3,
+        style: "solid",
+        color: "black",
+      });
+
+      var container = new qx.ui.container.Composite(
+        new qx.ui.layout.Canvas()
+      )
+
       const dialog = new scada.mnemo.dialog.signal.ControlVE();
       dialog.initSettingsFromJson({
         reset_keys: [
@@ -150,16 +160,16 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       const dialogControlContainer = new qx.ui.container.Composite(new qx.ui.layout.VBox());
 
       //First GroupBox
-      const windowsGroupBox = new qx.ui.groupbox.GroupBox("Диалоги");
-      windowsGroupBox.setLayout(new qx.ui.layout.VBox());
+      const windowsGroupBox = new qx.ui.groupbox.GroupBox("Список диалогов");
+      windowsGroupBox.setLayout(new qx.ui.layout.VBox(5));
 
-      const openBtn = new qx.ui.form.Button("Open dialog");
+      const openBtn = new qx.ui.form.Button("Открыть дилог");
       openBtn.addListener("execute", function () {
         dialog.show();
       }, this);
       windowsGroupBox.add(openBtn);
 
-      const calcDecimal = new qx.ui.form.Button("Calculate");
+      const calcDecimal = new qx.ui.form.Button("Калькулятор");
       const keyDecimal = new scada.mnemo.dialog.KeyboardDecimal();
       calcDecimal.addListener("execute", function () {
         keyDecimal.setCenter(true);
@@ -167,7 +177,7 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       }, this);
       windowsGroupBox.add(calcDecimal);
 
-      const question = new qx.ui.form.Button("Question");
+      const question = new qx.ui.form.Button("Вопрос");
       question.addListener("execute", function () {
         const keyDecimal = new scada.mnemo.dialog.Question();
         keyDecimal.setCenter(true);
@@ -175,7 +185,7 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       }, this);
       windowsGroupBox.add(question);
 
-      const questionSwitch = new qx.ui.form.Button("Question switch");
+      const questionSwitch = new qx.ui.form.Button("Двойной вопрос");
       questionSwitch.addListener("execute", function () {
         const keyDecimal = new scada.mnemo.dialog.QuestionSwitch();
         keyDecimal.setCenter(true);
@@ -183,7 +193,7 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       }, this);
       windowsGroupBox.add(questionSwitch);
 
-      const tempShow = new qx.ui.form.Button("Temperature");
+      const tempShow = new qx.ui.form.Button("Температура");
       tempShow.addListener("execute", function () {
         const keyDecimal = new scada.mnemo.dialog.TempShow();
         keyDecimal.setCenter(true);
@@ -191,41 +201,25 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       }, this);
       windowsGroupBox.add(tempShow);
 
-      const dlgSure = new scada.widget.window.confirm.Sure();
-      const sure = new qx.ui.form.Button("Sure");
-      sure.addListener("execute", function () {
-        dlgSure.open();
-      }, this);
-      windowsGroupBox.add(sure);
-
       const dlgDouble = new scada.widget.window.confirm.Double();
-      const double = new qx.ui.form.Button("Double question");
+      const double = new qx.ui.form.Button("Двойной вопрос");
       double.addListener("execute", function () {
+        dlgDouble.setCenterOnAppear(true);
         dlgDouble.open();
       }, this);
       windowsGroupBox.add(double);
-      
-      // const dlgPopup = new scada.widget.window.connection.Window();
-      // const winPopup = new qx.ui.form.Button("Popup");
-      // winPopup.addListener("execute", function () {
-      //   dlgPopup.show();
-      // }, this);
-      // windowsGroupBox.add(winPopup);
 
-      // const vbutt = new scada.widget.window.VButtonPanel();
-      // const verticalButt = new qx.ui.form.Button("Popup");
-      // verticalButt.addListener("execute", function () {
-      //   vbutt.add({"asd":"aaa"});
-      // }, this);
-      // windowsGroupBox.add(verticalButt);
-
-      // const content = "scada/mnemo/dialog/resource/scada/mnemo/dialog/test.png"
-      // const viewPor = new scada.widget.zoom.ViewPort(content, true);
-      // const viewZoom = new qx.ui.form.Button("Popup");
-      // viewZoom.addListener("execute", function () {
-      //   viewPor
-      // }, this);
-      // windowsGroupBox.add(viewZoom);
+      const w1 = new qx.ui.core.Widget().set({
+        backgroundColor: "red",
+        decorator: border,
+        width: 400,
+      });
+      const viewPor = new scada.widget.zoom.ViewPort(w1, true);
+      const viewZoom = new qx.ui.form.Button("Масштабирование");
+      viewZoom.addListener("execute", function () {
+        container.add(viewPor, {left: "50%", top: "50%", width: "25%", height: "25%"});
+      }, this);
+      windowsGroupBox.add(viewZoom);
 
       dialogControlContainer.add(windowsGroupBox);
 
@@ -243,7 +237,7 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       const views = new scada.widget.clock.Inline();
       timeGroupBox.add(views.getView());
 
-      const but = new qx.ui.form.Button("Время");
+      const but = new qx.ui.form.Button("Настройки");
       but.addListener("click", function(){
         winPickerWithButton.moveTo(200, 300);
         winPickerWithButton.open();
@@ -256,13 +250,13 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       const configGroupBox = new qx.ui.groupbox.GroupBox("Конфигурация");
       configGroupBox.setLayout(new qx.ui.layout.VBox());
 
-      const setValueButtonZero = new qx.ui.form.RadioButton("Set Zero");
+      const setValueButtonZero = new qx.ui.form.RadioButton(`Установить "0"`);
       configGroupBox.add(setValueButtonZero);
 
-      const setValueButtonOne = new qx.ui.form.RadioButton("Set One");
+      const setValueButtonOne = new qx.ui.form.RadioButton(`Установить "1"`);
       configGroupBox.add(setValueButtonOne);
 
-      const setVEState = new qx.ui.form.RadioButton("Set VE State");
+      const setVEState = new qx.ui.form.RadioButton(`Установить состояние "ВЭ"`);
       configGroupBox.add(setVEState);
 
       var managerConf = new qx.ui.form.RadioGroup(setValueButtonZero, setValueButtonOne, setVEState);
@@ -284,10 +278,10 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       const manageWindowsGroupBox = new qx.ui.groupbox.GroupBox("Управление окнами");
       manageWindowsGroupBox.setLayout(new qx.ui.layout.VBox());
 
-      const setProtectionBtn = new qx.ui.form.RadioButton("Protection");
+      const setProtectionBtn = new qx.ui.form.RadioButton("Заблокировать");
       manageWindowsGroupBox.add(setProtectionBtn);
 
-      const removeProtectionBtn = new qx.ui.form.RadioButton("Remove protection");
+      const removeProtectionBtn = new qx.ui.form.RadioButton("Разблокировать");
       manageWindowsGroupBox.add(removeProtectionBtn);
 
       const manager = new qx.ui.form.RadioGroup(setProtectionBtn, removeProtectionBtn);
@@ -304,7 +298,9 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       }, this)
 
       dialogControlContainer.add(manageWindowsGroupBox);
-      this.getRoot().add(dialogControlContainer, { top: 0, left: 0 });
+      container.add(dialogControlContainer, {left: 10, top: 10});
+
+      this.getRoot().add(container, { edge: 0 });
     }
   }
 });
