@@ -63,8 +63,10 @@ qx.Class.define("scada.config.Application",
       doc.add(button1, {left: 100, top: 50});
 
 
+      const stub = scada.config.settings.Manager.getIntance();
       // Add an event listener
       button1.addListener("execute", function() {
+        console.log(stub.getOptValue(port));
         /* eslint no-alert: "off" */
       });
     }

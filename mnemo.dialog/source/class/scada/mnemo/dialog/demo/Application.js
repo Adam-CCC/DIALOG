@@ -177,19 +177,29 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       }, this);
       windowsGroupBox.add(calcDecimal);
 
+      const questionDlg = new scada.mnemo.dialog.Question();
+      questionDlg.initSettingsFromJson({
+        question: {
+            label: "Вы уверены, что хотите продолжить?"
+        }
+      });
       const question = new qx.ui.form.Button("Вопрос");
       question.addListener("execute", function () {
-        const keyDecimal = new scada.mnemo.dialog.Question();
-        keyDecimal.setCenter(true);
-        keyDecimal.show();
+        questionDlg.setCenter(true);
+        questionDlg.show();
       }, this);
       windowsGroupBox.add(question);
 
       const questionSwitch = new qx.ui.form.Button("Двойной вопрос");
       questionSwitch.addListener("execute", function () {
-        const keyDecimal = new scada.mnemo.dialog.QuestionSwitch();
-        keyDecimal.setCenter(true);
-        keyDecimal.show();
+        const doubleQuest = new scada.mnemo.dialog.QuestionSwitch();
+        doubleQuest.initSettingsFromJson({
+          question: {
+              label: "Вы уверены, что хотите продолжить?"
+          }
+        });
+        doubleQuest.setCenter(true);
+        doubleQuest.open();
       }, this);
       windowsGroupBox.add(questionSwitch);
 
@@ -208,6 +218,14 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
         dlgDouble.open();
       }, this);
       windowsGroupBox.add(double);
+
+      // const dlgDoubles = new scada.widget.window.connection.Window();
+      // const doubles = new qx.ui.form.Button("Двойной вопрос");
+      // doubles.addListener("execute", function () {
+      //   dlgDoubles.setCenterOnAppear(true);
+      //   dlgDoubles.open();
+      // }, this);
+      // windowsGroupBox.add(doubles);
 
       const w1 = new qx.ui.core.Widget().set({
         backgroundColor: "red",
@@ -260,7 +278,7 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       configGroupBox.add(setVEState);
 
       var managerConf = new qx.ui.form.RadioGroup(setValueButtonZero, setValueButtonOne, setVEState);
-      managerConf.addListener("changeSelection", function () {
+      managerConf.addListener("changeSelection", function (e) {
         const selectedButton = e.getData()[0];
         const value = selectedButton.getLabel();
         if (value == "Set Zero") {
