@@ -319,6 +319,9 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       container.add(dialogControlContainer, {left: 10, top: 10});
 
       this.getRoot().add(container, { edge: 0 });
+
+      const test = new scada.mnemo.dialog.demo.ListDialog();
+      test.openControlVE();
     }
   }
 });
