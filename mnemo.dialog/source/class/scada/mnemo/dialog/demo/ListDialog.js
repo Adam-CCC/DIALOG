@@ -184,7 +184,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
             this._openQuestion();
             this._openDoubleQuestion();
             this._openTemperature();
-            // this._openZoom();
+            this._openZoom();
         },
 
         _openControlVE() {
@@ -256,13 +256,25 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
             this.add(temperatureBtn);
         },
 
-        // _openZoom() {
-        //     const viewPort = new scada.widget.zoom.ViewPort(w1, true);
-        //     const viewZoom = new qx.ui.form.Button("Масштабирование");
-        //     viewZoom.addListener("execute", function () {
-        //         container.add(viewPort, {left: "50%", top: "50%", width: "25%", height: "25%"});
-        //     }, this);
-        //     this.add(viewZoom);
-        // },
+        _openZoom() {
+            var border = new qx.ui.decoration.Decorator().set({
+                width: 3,
+                style: "solid",
+                color: "black",
+              });
+
+            const styleConent = new qx.ui.core.Widget().set({
+                backgroundColor: "red",
+                decorator: border,
+                width: 400,
+            });
+
+            const viewPort = new scada.widget.zoom.ViewPort(styleConent, true);
+            const viewZoom = new qx.ui.form.Button("Масштабирование");
+            viewZoom.addListener("execute", function () {
+                this.container.add(viewPort, {left: "50%", top: "50%", width: "25%", height: "25%"});
+            }, this);
+            this.add(viewZoom);
+        },
     }
 });
