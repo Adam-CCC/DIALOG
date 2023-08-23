@@ -45,34 +45,20 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
 
       qx.theme.iconfont.LoadMaterialIcons;
 
-      var border = new qx.ui.decoration.Decorator().set({
-        width: 3,
-        style: "solid",
-        color: "black",
-      });
-
       var container = new qx.ui.container.Composite(
         new qx.ui.layout.Canvas()
       )
       
       const dialogControlContainer = new qx.ui.container.Composite(new qx.ui.layout.VBox());
 
-      // const w1 = new qx.ui.core.Widget().set({
-      //   backgroundColor: "red",
-      //   decorator: border,
-      //   width: 400,
-      // });
-      
-      // const viewPor = new scada.widget.zoom.ViewPort(w1, true);
-      // const viewZoom = new qx.ui.form.Button("Масштабирование");
-      // viewZoom.addListener("execute", function () {
-      //   container.add(viewPor, {left: "50%", top: "50%", width: "25%", height: "25%"});
-      // }, this);
-      // windowsGroupBox.add(viewZoom);
       const listDialog = new scada.mnemo.dialog.demo.ListDialog();
-      listDialog.openAllDialog();
+      listDialog.openAllDialog(container);
 
       dialogControlContainer.add(listDialog);
+
+      const manager = new scada.mnemo.dialog.Manager();
+      manager.setDialogfactory("Zoom")
+      manager.setDialog()
 
       // const timeGroupBox = new qx.ui.groupbox.GroupBox("Время");
       // timeGroupBox.setLayout(new qx.ui.layout.VBox());
@@ -151,9 +137,6 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       container.add(dialogControlContainer, {left: 10, top: 10});
 
       this.getRoot().add(container, { edge: 0 });
-
-      const test = new scada.mnemo.dialog.demo.ListDialog();
-      console.log(test.getPropControlVE());
     }
   }
 });

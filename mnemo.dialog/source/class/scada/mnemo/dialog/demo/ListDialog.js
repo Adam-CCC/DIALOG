@@ -91,94 +91,46 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
         }
     },
 
-    events: {
-
-    },
-
     members: {
-        main() { 
-            // //First GroupBox
-            // const windowsGroupBox = new qx.ui.groupbox.GroupBox("Список диалогов");
-            // windowsGroupBox.setLayout(new qx.ui.layout.VBox(5));
 
-            // const openBtn = new qx.ui.form.Button("Открыть дилог");
-            // openBtn.addListener("execute", function () {
-            // dialog.show();
-            // }, this);
-            // windowsGroupBox.add(openBtn);
+        __factoryDialog(dialogName) {
+            switch (dialogName) {
+                case "controlVE":
+                    return new scada.mnemo.dialog.signal.ControlVE();
+                    break;
+                case "Calculate":
+                    return new scada.mnemo.dialog.KeyboardDecimal();
+                    break;
+                case "Question": 
+                    return new scada.mnemo.dialog.Question();
+                    break;
+                case "DoubleQuestion":
+                    return new scada.mnemo.dialog.QuestionSwitch();
+                    break;
+                case "Temperature":
+                    return new scada.mnemo.dialog.TempShow();
+                    break;
+                case "Zoom": 
+                    // return new new scada.widget.zoom.ViewPort()
+                    // break;
+                default:
+                    throw console.error("Not found dialog " + dialogName);                
+            }
+        },
 
-            // const calcDecimal = new qx.ui.form.Button("Калькулятор");
-            // const keyDecimal = new scada.mnemo.dialog.KeyboardDecimal();
-            // calcDecimal.addListener("execute", function () {
-            // keyDecimal.setCenter(true);
-            // keyDecimal.show();
-            // }, this);
-            // windowsGroupBox.add(calcDecimal);
-
-            // const questionDlg = new scada.mnemo.dialog.Question();
-            // questionDlg.initSettingsFromJson({
-            // question: {
-            //     label: "Вы уверены, что хотите продолжить?"
-            // }
-            // });
-            // const question = new qx.ui.form.Button("Вопрос");
-            // question.addListener("execute", function () {
-            // questionDlg.setCenter(true);
-            // questionDlg.show();
-            // }, this);
-            // windowsGroupBox.add(question);
-
-            // const questionSwitch = new qx.ui.form.Button("Двойной вопрос");
-            // questionSwitch.addListener("execute", function () {
-            // const doubleQuest = new scada.mnemo.dialog.QuestionSwitch();
-            // doubleQuest.initSettingsFromJson({
-            //     question: {
-            //         label: "Вы уверены, что хотите продолжить?"
-            //     }
-            // });
-            // doubleQuest.setCenter(true);
-            // doubleQuest.open();
-            // }, this);
-            // windowsGroupBox.add(questionSwitch);
-
-            // const tempShow = new qx.ui.form.Button("Температура");
-            // tempShow.addListener("execute", function () {
-            // const keyDecimal = new scada.mnemo.dialog.TempShow();
-            // keyDecimal.setCenter(true);
-            // keyDecimal.show();
-            // }, this);
-            // windowsGroupBox.add(tempShow);
-
-            // const dlgDouble = new scada.widget.window.confirm.Double();
-            // const double = new qx.ui.form.Button("Двойной вопрос");
-            // double.addListener("execute", function () {
-            // dlgDouble.setCenterOnAppear(true);
-            // dlgDouble.open();
-            // }, this);
-            // windowsGroupBox.add(double);
-
-            // // const dlgDoubles = new scada.widget.window.connection.Window();
-            // // const doubles = new qx.ui.form.Button("Двойной вопрос");
-            // // doubles.addListener("execute", function () {
-            // //   dlgDoubles.setCenterOnAppear(true);
-            // //   dlgDoubles.open();
-            // // }, this);
-            // // windowsGroupBox.add(doubles);
-
-            // const w1 = new qx.ui.core.Widget().set({
-            // backgroundColor: "red",
-            // decorator: border,
-            // width: 400,
-            // });
-            // const viewPor = new scada.widget.zoom.ViewPort(w1, true);
-            // const viewZoom = new qx.ui.form.Button("Масштабирование");
-            // viewZoom.addListener("execute", function () {
-            // container.add(viewPor, {left: "50%", top: "50%", width: "25%", height: "25%"});
-            // }, this);
-            // windowsGroupBox.add(viewZoom);
+        initManager(dialogName) {
+            console.log(this.__factoryDialog("Temperature"));
+            this.manager = new scada.mnemo.dialog.Manager();
+            this.manager.setDialog({name: this.__factoryDialog(dialogName)});
+            this.manager.addListener("goTo", function(event) {
+                const position = { x: 200, y: 200 }; // Замените координаты на нужные
+                this.manager.openDialog(position, event.getData());
+            }, this);
         },
 
         openAllDialog() {
+            this.initManager("controlVE");
+
             this._openControlVE();
             this._openCalculate();
             this._openQuestion();

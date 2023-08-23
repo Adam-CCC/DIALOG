@@ -34,7 +34,7 @@ qx.Class.define("scada.mnemo.dialog.Manager", {
         setDialog(config){
             this.__destroyLastDialog();
 
-            const dialog = this.__createDialog(config.name)
+            const dialog = this.__createDialog(config.name);
             this._inDataBindingId = this.bind("data", dialog, "data");
             this._outDataBindingId = dialog.bind("outData", this, "outData");
             dialog.initSettingsFromJson(config);
@@ -78,6 +78,7 @@ qx.Class.define("scada.mnemo.dialog.Manager", {
             dialog.addListener("goto", function(e){
                 this.fireDataEvent("goTo", e.getData())
             }, this);
+            console.error("Это вывод: " + dialog);
             return dialog;
         }
     }
