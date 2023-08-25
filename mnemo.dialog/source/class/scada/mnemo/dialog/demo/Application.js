@@ -57,8 +57,6 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       dialogControlContainer.add(listDialog);
 
       const manager = new scada.mnemo.dialog.Manager();
-      manager.setDialogfactory("Zoom")
-      manager.setDialog()
 
       // const timeGroupBox = new qx.ui.groupbox.GroupBox("Время");
       // timeGroupBox.setLayout(new qx.ui.layout.VBox());

@@ -78,7 +78,6 @@ qx.Class.define("scada.mnemo.dialog.Manager", {
             dialog.addListener("goto", function(e){
                 this.fireDataEvent("goTo", e.getData())
             }, this);
-            console.error("Это вывод: " + dialog);
             return dialog;
         }
     }
