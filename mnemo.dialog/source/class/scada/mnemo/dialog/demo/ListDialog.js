@@ -115,8 +115,8 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 console.log(e.getData());
             }, this);
 
-            const openBtn = new qx.ui.form.Button("Открыть диалог");
-            openBtn.addListener("execute", function () {
+            const openBtn = new qx.ui.form.RadioButton("Открыть диалог");
+            openBtn.addListener("changeValue", function () {
                 this.setDialog(this.getPropControlVE());
                 this.openDialog({x: 300, y: 300}, "")
             }, this);
@@ -124,8 +124,8 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
         },
 
         _openCalculate() {
-            const calculateBtn = new qx.ui.form.Button("Калькулятор");
-            calculateBtn.addListener("execute", function () {
+            const calculateBtn = new qx.ui.form.RadioButton("Калькулятор");
+            calculateBtn.addListener("changeValue", function () {
                 this.setDialog({name: "Calculate"});
                 this.openDialog({x: 300, y: 300}, "")
             }, this);
@@ -133,8 +133,8 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
         },
 
         _openQuestion() {
-            const questionBtn = new qx.ui.form.Button("Вопрос");
-            questionBtn.addListener("execute", function () {
+            const questionBtn = new qx.ui.form.RadioButton("Вопрос");
+            questionBtn.addListener("changeValue", function () {
                 this.setDialog({name: "Question", question : {label: "Вы уверены что хотите продолжить?"}});
                 this.openDialog({x: 300, y: 300}, "")
             }, this);
@@ -142,19 +142,19 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
         },
 
         _openDoubleQuestion() {
-            const doubleQuestionBtn = new qx.ui.form.Button("Двойной вопрос");
-            doubleQuestionBtn.addListener("execute", function () {
+            const doubleQuestionBtn = new qx.ui.form.RadioButton("Двойной вопрос");
+            doubleQuestionBtn.addListener("changeValue", function () {
                 this.setDialog({name: "DoubleQuestion", question : {label: "Вы уверены что хотите продолжить?"}});
-                this.openDialog({x: 300, y: 300}, "")
+                this.openDialog({x: 300, y: 300}, "");
             }, this);
             this.add(doubleQuestionBtn);
         },
 
         _openTemperature() {
-            const temperatureBtn = new qx.ui.form.Button("Температура");
-            temperatureBtn.addListener("execute", function () {
+            const temperatureBtn = new qx.ui.form.RadioButton("Температура");
+            temperatureBtn.addListener("changeValue", function () {
                 this.setDialog({name: "Temperature", question : {label: "Вы уверены что хотите продолжить?"}});
-                this.openDialog({x: 300, y: 300}, "")
+                this.openDialog({x: 300, y: 300}, "");
             }, this);
             this.add(temperatureBtn);
         }

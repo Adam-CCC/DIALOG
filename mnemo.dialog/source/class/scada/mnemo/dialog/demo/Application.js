@@ -56,81 +56,56 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
 
       dialogControlContainer.add(listDialog);
 
-      const manager = new scada.mnemo.dialog.Manager();
+      //Second GroupBox
+      const configGroupBox = new qx.ui.groupbox.GroupBox("Конфигурация");
+      configGroupBox.setLayout(new qx.ui.layout.VBox());
 
-      // const timeGroupBox = new qx.ui.groupbox.GroupBox("Время");
-      // timeGroupBox.setLayout(new qx.ui.layout.VBox());
+      const setValueButtonZero = new qx.ui.form.RadioButton(`Установить "0"`);
+      configGroupBox.add(setValueButtonZero);
 
+      const setValueButtonOne = new qx.ui.form.RadioButton(`Установить "1"`);
+      configGroupBox.add(setValueButtonOne);
 
-      // const pickerWithButton = new scada.widget.period.PickerWithButton();
-      // const winPickerWithButton = new qx.ui.window.Window();
-      // winPickerWithButton.setLayout(new qx.ui.layout.VBox(0));
-      // winPickerWithButton.setShowMaximize(false);
-      // winPickerWithButton.setShowMinimize(false);
-      // winPickerWithButton.add(pickerWithButton);
+      const setVEState = new qx.ui.form.RadioButton(`Установить состояние "ВЭ"`);
+      configGroupBox.add(setVEState);
 
-      // const views = new scada.widget.clock.Inline();
-      // timeGroupBox.add(views.getView());
+      var managerConf = new qx.ui.form.RadioGroup(setValueButtonZero, setValueButtonOne, setVEState);
+      managerConf.addListener("changeSelection", function (e) {
+        const selectedButton = e.getData()[0];
+        const value = selectedButton.getLabel();
+        if (value == "Set Zero") {
+          dialog.setData({ "question": 0 });
+        } else if (value == "Set one") {
+          dialog.setData({ "question": 1 });
+        } else if (value == "Set VE State") {
+          dialog.setData({ "bbb": 1 });
+        }
+      }, this);
 
-      // const but = new qx.ui.form.Button("Настройки");
-      // but.addListener("click", function(){
-      //   winPickerWithButton.moveTo(200, 300);
-      //   winPickerWithButton.open();
-      // })
-      // timeGroupBox.add(but);
+      dialogControlContainer.add(configGroupBox);
 
-      // dialogControlContainer.add(timeGroupBox);
+      //Third GroupBox
+      const manageWindowsGroupBox = new qx.ui.groupbox.GroupBox("Управление окнами");
+      manageWindowsGroupBox.setLayout(new qx.ui.layout.VBox());
 
-      // //Second GroupBox
-      // const configGroupBox = new qx.ui.groupbox.GroupBox("Конфигурация");
-      // configGroupBox.setLayout(new qx.ui.layout.VBox());
+      const setProtectionBtn = new qx.ui.form.RadioButton("Заблокировать");
+      manageWindowsGroupBox.add(setProtectionBtn);
 
-      // const setValueButtonZero = new qx.ui.form.RadioButton(`Установить "0"`);
-      // configGroupBox.add(setValueButtonZero);
+      const removeProtectionBtn = new qx.ui.form.RadioButton("Разблокировать");
+      manageWindowsGroupBox.add(removeProtectionBtn);
 
-      // const setValueButtonOne = new qx.ui.form.RadioButton(`Установить "1"`);
-      // configGroupBox.add(setValueButtonOne);
+      const manager = new qx.ui.form.RadioGroup(setProtectionBtn, removeProtectionBtn);
+      manager.setSelection([removeProtectionBtn]);
 
-      // const setVEState = new qx.ui.form.RadioButton(`Установить состояние "ВЭ"`);
-      // configGroupBox.add(setVEState);
-
-      // var managerConf = new qx.ui.form.RadioGroup(setValueButtonZero, setValueButtonOne, setVEState);
-      // managerConf.addListener("changeSelection", function (e) {
-      //   const selectedButton = e.getData()[0];
-      //   const value = selectedButton.getLabel();
-      //   if (value == "Set Zero") {
-      //     dialog.setData({ "question": 0 });
-      //   } else if (value == "Set one") {
-      //     dialog.setData({ "question": 1 });
-      //   } else if (value == "Set VE State") {
-      //     dialog.setData({ "bbb": 1 });
-      //   }
-      // }, this);
-
-      // dialogControlContainer.add(configGroupBox);
-
-      // //Third GroupBox
-      // const manageWindowsGroupBox = new qx.ui.groupbox.GroupBox("Управление окнами");
-      // manageWindowsGroupBox.setLayout(new qx.ui.layout.VBox());
-
-      // const setProtectionBtn = new qx.ui.form.RadioButton("Заблокировать");
-      // manageWindowsGroupBox.add(setProtectionBtn);
-
-      // const removeProtectionBtn = new qx.ui.form.RadioButton("Разблокировать");
-      // manageWindowsGroupBox.add(removeProtectionBtn);
-
-      // const manager = new qx.ui.form.RadioGroup(setProtectionBtn, removeProtectionBtn);
-      // manager.setSelection([removeProtectionBtn]);
-
-      // manager.addListener("changeSelection", function(e){
-      //   const selectedButton = e.getData()[0];
-      //   const value = selectedButton.getLabel()
-      //   if (value == "Protection") {
-      //     dialog.setData({ "aaa": 1 });
-      //   } else {
-      //     dialog.setData({ "aaa": 0 });
-      //   }
-      // }, this)
+      manager.addListener("changeSelection", function(e){
+        const selectedButton = e.getData()[0];
+        const value = selectedButton.getLabel()
+        if (value == "Protection") {
+          dialog.setData({ "aaa": 1 });
+        } else {
+          dialog.setData({ "aaa": 0 });
+        }
+      }, this)
 
       container.add(dialogControlContainer, {left: 10, top: 10});
 
