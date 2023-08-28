@@ -85,27 +85,31 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       dialogControlContainer.add(configGroupBox);
 
       //Third GroupBox
-      const manageWindowsGroupBox = new qx.ui.groupbox.GroupBox("Управление окнами");
-      manageWindowsGroupBox.setLayout(new qx.ui.layout.VBox());
+      // const manageWindowsGroupBox = new qx.ui.groupbox.GroupBox("Управление окнами");
+      // manageWindowsGroupBox.setLayout(new qx.ui.layout.VBox());
 
-      const setProtectionBtn = new qx.ui.form.RadioButton("Заблокировать");
-      manageWindowsGroupBox.add(setProtectionBtn);
+      // const setProtectionBtn = new qx.ui.form.RadioButton("Заблокировать");
+      // manageWindowsGroupBox.add(setProtectionBtn);
 
-      const removeProtectionBtn = new qx.ui.form.RadioButton("Разблокировать");
-      manageWindowsGroupBox.add(removeProtectionBtn);
+      // const removeProtectionBtn = new qx.ui.form.RadioButton("Разблокировать");
+      // manageWindowsGroupBox.add(removeProtectionBtn);
 
-      const manager = new qx.ui.form.RadioGroup(setProtectionBtn, removeProtectionBtn);
-      manager.setSelection([removeProtectionBtn]);
+      // const manager = new qx.ui.form.RadioGroup(setProtectionBtn, removeProtectionBtn);
+      // manager.setSelection([removeProtectionBtn]);
 
-      manager.addListener("changeSelection", function(e){
-        const selectedButton = e.getData()[0];
-        const value = selectedButton.getLabel()
-        if (value == "Protection") {
-          dialog.setData({ "aaa": 1 });
-        } else {
-          dialog.setData({ "aaa": 0 });
-        }
-      }, this)
+      // manager.addListener("changeSelection", function(e){
+      //   const selectedButton = e.getData()[0];
+      //   const value = selectedButton.getLabel()
+      //   if (value == "Protection") {
+      //     dialog.setData({ "aaa": 1 });
+      //   } else {
+      //     dialog.setData({ "aaa": 0 });
+      //   }
+      // }, this)
+
+      const dialogController = new scada.mnemo.dialog.demo.DialogController()
+
+      dialogControlContainer.add(dialogController);
 
       container.add(dialogControlContainer, {left: 10, top: 10});
 
