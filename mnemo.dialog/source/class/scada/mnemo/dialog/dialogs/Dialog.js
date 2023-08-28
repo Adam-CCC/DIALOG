@@ -1,10 +1,10 @@
-qx.Class.define("scada.mnemo.dialog.Dialog", {
+qx.Class.define("scada.mnemo.dialog.dialogs.Dialog", {
     extend: scada.widget.window.Place,
     include: [
-        scada.mnemo.dialog.MData,
-        scada.mnemo.dialog.MPosition,
-        scada.mnemo.dialog.MProtection,
-        scada.mnemo.dialog.MConfirmation
+        scada.mnemo.dialog.dialogs.MData,
+        scada.mnemo.dialog.dialogs.MPosition,
+        scada.mnemo.dialog.dialogs.MProtection,
+        scada.mnemo.dialog.dialogs.MConfirmation
     ],
 
     construct() {

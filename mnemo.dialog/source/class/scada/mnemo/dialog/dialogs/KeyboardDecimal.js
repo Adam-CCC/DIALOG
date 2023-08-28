@@ -1,5 +1,5 @@
-qx.Class.define("scada.mnemo.dialog.KeyboardDecimal", {
-    extend: scada.mnemo.dialog.Keyboard,
+qx.Class.define("scada.mnemo.dialog.dialogs.KeyboardDecimal", {
+    extend: scada.mnemo.dialog.dialogs.Keyboard,
 
     members: {
         _createWidgetContent(){

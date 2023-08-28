@@ -1,7 +1,7 @@
-qx.Mixin.define("scada.mnemo.dialog.MProtection", {
+qx.Mixin.define("scada.mnemo.dialog.dialogs.MProtection", {
     construct() {
         this.initProtectionMessage(this.tr("The control is blocked"));
-        this.__protectionOnValue = [scada.mnemo.dialog.MProtection.PROTECTION_DEFAULT_VALUE];
+        this.__protectionOnValue = [scada.mnemo.dialog.dialogs.MProtection.PROTECTION_DEFAULT_VALUE];
     },
 
     destruct() {

@@ -1,4 +1,4 @@
-qx.Mixin.define("scada.mnemo.dialog.MData", {
+qx.Mixin.define("scada.mnemo.dialog.dialogs.MData", {
     properties: {
         data: {
             init: "?",

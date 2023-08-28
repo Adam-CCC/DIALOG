@@ -11,7 +11,7 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MFabricDialog", {
     },
     
     members: {
-        __manager: new scada.mnemo.dialog.Manager(),
+        __manager: new scada.mnemo.dialog.dialogs.Manager(),
         __dialogs: new scada.mnemo.dialog.demo.Dialogs(),
 
         setDialog(config) {

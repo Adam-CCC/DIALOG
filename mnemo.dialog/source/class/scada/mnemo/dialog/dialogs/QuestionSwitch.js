@@ -1,5 +1,5 @@
-qx.Class.define("scada.mnemo.dialog.QuestionSwitch", {
-    extend: scada.mnemo.dialog.Question,
+qx.Class.define("scada.mnemo.dialog.dialogs.QuestionSwitch", {
+    extend: scada.mnemo.dialog.dialogs.Question,
 
     destruct() {
         this.__actionLabels = null;

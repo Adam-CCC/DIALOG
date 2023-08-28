@@ -1,5 +1,5 @@
-qx.Class.define("scada.mnemo.dialog.Question", {
-    extend: scada.mnemo.dialog.Dialog,
+qx.Class.define("scada.mnemo.dialog.dialogs.Question", {
+    extend: scada.mnemo.dialog.dialogs.Dialog,
 
     members: {
         _createWidgetContent(){

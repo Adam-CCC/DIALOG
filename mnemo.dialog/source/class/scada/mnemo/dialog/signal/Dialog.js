@@ -1,5 +1,5 @@
 qx.Class.define("scada.mnemo.dialog.signal.Dialog", {
-    extend: scada.mnemo.dialog.Dialog,
+    extend: scada.mnemo.dialog.dialogs.Dialog,
 
     construct() {
         super();

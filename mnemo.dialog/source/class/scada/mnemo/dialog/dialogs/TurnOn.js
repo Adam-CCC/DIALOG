@@ -1,5 +1,5 @@
-qx.Class.define("scada.mnemo.dialog.TurnOn", {
-    extend: scada.mnemo.dialog.Dialog,
+qx.Class.define("scada.mnemo.dialog.dialogs.TurnOn", {
+    extend: scada.mnemo.dialog.dialogs.Dialog,
 
     members: {
         _onConfirm(){

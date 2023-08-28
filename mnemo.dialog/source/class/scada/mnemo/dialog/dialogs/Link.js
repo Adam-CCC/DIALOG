@@ -1,5 +1,5 @@
-qx.Class.define("scada.mnemo.dialog.Link", {
-    extend: scada.mnemo.dialog.Dialog,
+qx.Class.define("scada.mnemo.dialog.dialogs.Link", {
+    extend: scada.mnemo.dialog.dialogs.Dialog,
 
     members: {
         _onLoadSettings(settings){

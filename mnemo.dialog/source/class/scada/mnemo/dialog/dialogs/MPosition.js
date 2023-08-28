@@ -1,4 +1,4 @@
-qx.Mixin.define("scada.mnemo.dialog.MPosition", {
+qx.Mixin.define("scada.mnemo.dialog.dialogs.MPosition", {
     properties: {
         center: {
             init: false,
