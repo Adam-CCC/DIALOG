@@ -115,48 +115,63 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 console.log(e.getData());
             }, this);
 
-            const openBtn = new qx.ui.form.RadioButton("Открыть диалог");
-            openBtn.addListener("changeValue", function () {
-                this.setDialog(this.getPropControlVE());
-                this.openDialog({x: 300, y: 300}, "")
+            this.managerRadioBtn.addListener("changeSelection", function (e) {
+                const selectedButton = e.getData()[0];
+                const value = selectedButton.getLabel();
+                if(value == "Открыть диалог") {
+                    this.setDialog(this.getPropControlVE());
+                    this.openDialog({x: 300, y: 300}, "");
+                }
             }, this);
-            this.add(openBtn);
+            this.add(this.radioOpenDialog);
         },
 
         _openCalculate() {
-            const calculateBtn = new qx.ui.form.RadioButton("Калькулятор");
-            calculateBtn.addListener("changeValue", function () {
-                this.setDialog({name: "Calculate"});
-                this.openDialog({x: 300, y: 300}, "")
-            }, this);
-            this.add(calculateBtn);
+            this.managerRadioBtn.addListener("changeSelection", function (e) {
+                const selectedButton = e.getData()[0];
+                const value = selectedButton.getLabel();
+                if(value == "Калькулятор") {
+                    this.setDialog({name: "Calculate"});
+                    this.openDialog({x: 300, y: 300}, "")
+                }
+            },  this);
+            this.add(this.radioCalculate);
         },
 
         _openQuestion() {
-            const questionBtn = new qx.ui.form.RadioButton("Вопрос");
-            questionBtn.addListener("changeValue", function () {
-                this.setDialog({name: "Question", question : {label: "Вы уверены что хотите продолжить?"}});
-                this.openDialog({x: 300, y: 300}, "")
+            this.managerRadioBtn.addListener("changeSelection", function (e) {
+                const selectedButton = e.getData()[0];
+                const value = selectedButton.getLabel();
+                if(value == "Вопрос") {
+                    this.setDialog({name: "Question", question : {label: "Вы уверены что хотите продолжить?"}});
+                    this.openDialog({x: 300, y: 300}, "")
+                }
             }, this);
-            this.add(questionBtn);
+            this.add(this.radioQuestion);
         },
 
         _openDoubleQuestion() {
-            const doubleQuestionBtn = new qx.ui.form.RadioButton("Двойной вопрос");
-            doubleQuestionBtn.addListener("changeValue", function () {
-                this.setDialog({name: "DoubleQuestion", question : {label: "Вы уверены что хотите продолжить?"}});
-                this.openDialog({x: 300, y: 300}, "");
+            this.managerRadioBtn.addListener("changeSelection", function (e) {
+                const selectedButton = e.getData()[0];
+                const value = selectedButton.getLabel();
+                if(value == "Двойной вопрос") {
+                    this.setDialog({name: "DoubleQuestion", question : {label: "Вы уверены что хотите продолжить?", key : ""}});
+                    this.openDialog({x: 300, y: 300}, "");
+                }
             }, this);
-            this.add(doubleQuestionBtn);
+            this.add(this.radioDoubleQuestion);
         },
 
         _openTemperature() {
-            const temperatureBtn = new qx.ui.form.RadioButton("Температура");
-            temperatureBtn.addListener("changeValue", function () {
-                this.setDialog({name: "Temperature", question : {label: "Вы уверены что хотите продолжить?"}});
-                this.openDialog({x: 300, y: 300}, "");
+            this.managerRadioBtn.addListener("changeSelection", function (e) {
+                const selectedButton = e.getData()[0];
+                const value = selectedButton.getLabel();
+                if(value == "Температура") {
+                    this.setDialog({name: "Temperature", key : ""});
+                    this.openDialog({x: 300, y: 300}, "");
+                }
             }, this);
-            this.add(temperatureBtn);
+            this.add(this.radioTemperature);
         }
     }
 });
