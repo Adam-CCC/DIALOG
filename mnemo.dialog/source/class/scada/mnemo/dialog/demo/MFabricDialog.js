@@ -9,6 +9,10 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MFabricDialog", {
 
         this.managerRadioBtn = new qx.ui.form.RadioGroup(this.radioOpenDialog, this.radioCalculate, this.radioQuestion, this.radioDoubleQuestion, this.radioTemperature);
     },
+
+    properties: {
+
+    },
     
     members: {
         __manager: new scada.mnemo.dialog.dialogs.Manager(),

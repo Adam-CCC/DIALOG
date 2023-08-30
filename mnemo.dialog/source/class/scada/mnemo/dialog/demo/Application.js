@@ -51,7 +51,7 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       
       const dialogControlContainer = new qx.ui.container.Composite(new qx.ui.layout.VBox());
 
-      const listDialog = new scada.mnemo.dialog.demo.ListDialog();
+      const listDialog = new scada.mnemo.dialog.demo.ListDialog("Диалоги");
       listDialog.openAllDialog(container);
 
       dialogControlContainer.add(listDialog);
@@ -107,7 +107,7 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       //   }
       // }, this)
 
-      const dialogController = new scada.mnemo.dialog.demo.DialogController()
+      const dialogController = new scada.mnemo.dialog.demo.DialogController("Управление окнами")
 
       dialogControlContainer.add(dialogController);
 

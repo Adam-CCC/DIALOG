@@ -2,8 +2,8 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
     extend : qx.ui.groupbox.GroupBox,
     include: [scada.mnemo.dialog.demo.MFabricDialog],
 
-    construct() {
-        super("Диалоги");
+    construct(name) {
+        super(name);
         this.setLayout(new qx.ui.layout.VBox(5));
     },
 
@@ -90,6 +90,10 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 key: "sss"
                 }
             }
+        },
+
+        protections : {
+            init: {"aaa":1}
         }
     },
 
@@ -101,6 +105,10 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
             this._openQuestion();
             this._openDoubleQuestion();
             this._openTemperature();
+        },
+
+        protect(){
+
         },
 
         _openControlVE() {
@@ -119,8 +127,10 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 const selectedButton = e.getData()[0];
                 const value = selectedButton.getLabel();
                 if(value == "Открыть диалог") {
+                    this.protect();
                     this.setDialog(this.getPropControlVE());
-                    this.openDialog({x: 300, y: 300}, "");
+                    console.log("Имею: " + this.getProtections())
+                    this.openDialog({x: 300, y: 300}, this.getProtections());
                 }
             }, this);
             this.add(this.radioOpenDialog);
