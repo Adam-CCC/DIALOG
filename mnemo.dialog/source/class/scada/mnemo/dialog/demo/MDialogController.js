@@ -1,7 +1,13 @@
 qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
     construct() {
+        this.groupControlDialogs = new qx.ui.groupbox.GroupBox("Диалоги");
+        this.groupControlDialogs.setLayout(new qx.ui.layout.VBox());
+
         this.radioProtection = new qx.ui.form.RadioButton("Заблокировать");
         this.radioRemoveProtection = new qx.ui.form.RadioButton("Разблокировать");
+
+        this.groupControlDialogs.add(this.radioProtection)
+        this.groupControlDialogs.add(this.radioRemoveProtection)
         
         this.manager = new qx.ui.form.RadioGroup(this.radioProtection, this.radioRemoveProtection);
     },

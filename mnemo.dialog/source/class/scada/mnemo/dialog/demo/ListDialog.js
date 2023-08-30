@@ -1,13 +1,12 @@
 qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
-    extend : qx.ui.groupbox.GroupBox,
+    extend : qx.ui.container.Composite,
     include: [
         scada.mnemo.dialog.demo.MFabricDialog,
         scada.mnemo.dialog.demo.MDialogController
     ],
 
-    construct(name) {
-        super(name);
-        this.setLayout(new qx.ui.layout.VBox(5));
+    construct() {
+        super(new qx.ui.layout.VBox());
     },
 
     properties: {
