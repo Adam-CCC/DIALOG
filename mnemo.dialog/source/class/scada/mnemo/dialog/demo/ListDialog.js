@@ -1,6 +1,9 @@
 qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
     extend : qx.ui.groupbox.GroupBox,
-    include: [scada.mnemo.dialog.demo.MFabricDialog],
+    include: [
+        scada.mnemo.dialog.demo.MFabricDialog,
+        scada.mnemo.dialog.demo.MDialogController
+    ],
 
     construct(name) {
         super(name);
@@ -93,7 +96,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
         },
 
         protections : {
-            init: {"aaa":1}
+            init: ""
         }
     },
 
@@ -105,31 +108,15 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
             this._openQuestion();
             this._openDoubleQuestion();
             this._openTemperature();
-        },
-
-        protect(){
-
+            this.managerAddlistener();
         },
 
         _openControlVE() {
-            const dialog = new scada.mnemo.dialog.signal.ControlVE();
-            dialog.initSettingsFromJson(this.getPropControlVE());
-
-            dialog.addListener("goto", function(){
-                console.log("GOTO");
-            }, this);
-
-            dialog.addListener("changeOutData", function(e){
-                console.log(e.getData());
-            }, this);
-
             this.managerRadioBtn.addListener("changeSelection", function (e) {
                 const selectedButton = e.getData()[0];
                 const value = selectedButton.getLabel();
                 if(value == "Открыть диалог") {
-                    this.protect();
                     this.setDialog(this.getPropControlVE());
-                    console.log("Имею: " + this.getProtections())
                     this.openDialog({x: 300, y: 300}, this.getProtections());
                 }
             }, this);

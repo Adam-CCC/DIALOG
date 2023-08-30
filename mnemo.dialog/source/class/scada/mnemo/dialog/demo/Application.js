@@ -45,71 +45,23 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
 
       qx.theme.iconfont.LoadMaterialIcons;
 
+      // const dialogController = new scada.mnemo.dialog.demo.DialogController("Управление окнами");
+      // dialogController.initValue();
+
       var container = new qx.ui.container.Composite(
         new qx.ui.layout.Canvas()
       )
-      
+
       const dialogControlContainer = new qx.ui.container.Composite(new qx.ui.layout.VBox());
 
       const listDialog = new scada.mnemo.dialog.demo.ListDialog("Диалоги");
-      listDialog.openAllDialog(container);
+      listDialog.openAllDialog();
 
       dialogControlContainer.add(listDialog);
 
-      //Second GroupBox
-      const configGroupBox = new qx.ui.groupbox.GroupBox("Конфигурация");
-      configGroupBox.setLayout(new qx.ui.layout.VBox());
+      
 
-      const setValueButtonZero = new qx.ui.form.RadioButton(`Установить "0"`);
-      configGroupBox.add(setValueButtonZero);
-
-      const setValueButtonOne = new qx.ui.form.RadioButton(`Установить "1"`);
-      configGroupBox.add(setValueButtonOne);
-
-      const setVEState = new qx.ui.form.RadioButton(`Установить состояние "ВЭ"`);
-      configGroupBox.add(setVEState);
-
-      var managerConf = new qx.ui.form.RadioGroup(setValueButtonZero, setValueButtonOne, setVEState);
-      managerConf.addListener("changeSelection", function (e) {
-        const selectedButton = e.getData()[0];
-        const value = selectedButton.getLabel();
-        if (value == "Set Zero") {
-          dialog.setData({ "question": 0 });
-        } else if (value == "Set one") {
-          dialog.setData({ "question": 1 });
-        } else if (value == "Set VE State") {
-          dialog.setData({ "bbb": 1 });
-        }
-      }, this);
-
-      dialogControlContainer.add(configGroupBox);
-
-      //Third GroupBox
-      // const manageWindowsGroupBox = new qx.ui.groupbox.GroupBox("Управление окнами");
-      // manageWindowsGroupBox.setLayout(new qx.ui.layout.VBox());
-
-      // const setProtectionBtn = new qx.ui.form.RadioButton("Заблокировать");
-      // manageWindowsGroupBox.add(setProtectionBtn);
-
-      // const removeProtectionBtn = new qx.ui.form.RadioButton("Разблокировать");
-      // manageWindowsGroupBox.add(removeProtectionBtn);
-
-      // const manager = new qx.ui.form.RadioGroup(setProtectionBtn, removeProtectionBtn);
-      // manager.setSelection([removeProtectionBtn]);
-
-      // manager.addListener("changeSelection", function(e){
-      //   const selectedButton = e.getData()[0];
-      //   const value = selectedButton.getLabel()
-      //   if (value == "Protection") {
-      //     dialog.setData({ "aaa": 1 });
-      //   } else {
-      //     dialog.setData({ "aaa": 0 });
-      //   }
-      // }, this)
-
-      const dialogController = new scada.mnemo.dialog.demo.DialogController("Управление окнами")
-
-      dialogControlContainer.add(dialogController);
+      // dialogControlContainer.add(listDialog.setMaket());
 
       container.add(dialogControlContainer, {left: 10, top: 10});
 
