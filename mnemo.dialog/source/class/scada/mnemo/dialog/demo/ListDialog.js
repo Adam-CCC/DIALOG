@@ -119,7 +119,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                     this.openDialog({x: 300, y: 300}, this.getProtections());
                 }
             }, this);
-            this.add(this.radioOpenDialog);
+            this.groupDialogs.add(this.radioOpenDialog);
         },
 
         _openCalculate() {
@@ -131,7 +131,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                     this.openDialog({x: 300, y: 300}, "")
                 }
             },  this);
-            this.add(this.radioCalculate);
+            this.groupDialogs.add(this.radioCalculate);
         },
 
         _openQuestion() {
@@ -143,7 +143,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                     this.openDialog({x: 300, y: 300}, "")
                 }
             }, this);
-            this.add(this.radioQuestion);
+            this.groupDialogs.add(this.radioQuestion);
         },
 
         _openDoubleQuestion() {
@@ -155,7 +155,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                     this.openDialog({x: 300, y: 300}, "");
                 }
             }, this);
-            this.add(this.radioDoubleQuestion);
+            this.groupDialogs.add(this.radioDoubleQuestion);
         },
 
         _openTemperature() {
@@ -167,7 +167,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                     this.openDialog({x: 300, y: 300}, "");
                 }
             }, this);
-            this.add(this.radioTemperature);
+            this.groupDialogs.add(this.radioTemperature);
         }
     }
 });

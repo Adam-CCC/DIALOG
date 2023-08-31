@@ -1,15 +1,17 @@
 qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
     construct() {
-        this.groupControlDialogs = new qx.ui.groupbox.GroupBox("Диалоги");
+        this.groupControlDialogs = new qx.ui.groupbox.GroupBox("Управление диалогами");
         this.groupControlDialogs.setLayout(new qx.ui.layout.VBox());
 
         this.radioProtection = new qx.ui.form.RadioButton("Заблокировать");
         this.radioRemoveProtection = new qx.ui.form.RadioButton("Разблокировать");
 
-        this.groupControlDialogs.add(this.radioProtection)
-        this.groupControlDialogs.add(this.radioRemoveProtection)
+        this.groupControlDialogs.add(this.radioProtection);
+        this.groupControlDialogs.add(this.radioRemoveProtection);
         
         this.manager = new qx.ui.form.RadioGroup(this.radioProtection, this.radioRemoveProtection);
+
+        this.add(this.groupControlDialogs);
     },
     
     members: {
@@ -29,8 +31,6 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
                     this.setProtections({"aaa":0});  
                 }
             }, this)
-            this.add(this.radioRemoveProtection);
-            this.add(this.radioProtection);
         }
     }
 });
