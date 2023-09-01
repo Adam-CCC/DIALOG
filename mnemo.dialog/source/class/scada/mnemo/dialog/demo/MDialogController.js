@@ -5,11 +5,10 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
 
         this.radioProtection = new qx.ui.form.RadioButton("Заблокировать");
         this.radioRemoveProtection = new qx.ui.form.RadioButton("Разблокировать");
-
-        this.groupControlDialogs.add(this.radioProtection)
-        this.groupControlDialogs.add(this.radioRemoveProtection)
         
         this.manager = new qx.ui.form.RadioGroup(this.radioProtection, this.radioRemoveProtection);
+
+        this.add(this.groupControlDialogs);
     },
     
     members: {
@@ -29,8 +28,8 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
                     this.setProtections({"aaa":0});  
                 }
             }, this)
-            this.add(this.radioRemoveProtection);
-            this.add(this.radioProtection);
+            this.groupControlDialogs.add(this.radioProtection);
+            this.groupControlDialogs.add(this.radioRemoveProtection);
         }
     }
 });
