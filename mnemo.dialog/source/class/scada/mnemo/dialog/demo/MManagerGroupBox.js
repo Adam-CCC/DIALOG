@@ -1,13 +1,21 @@
 qx.Mixin.define("scada.mnemo.dialog.demo.MManagerGroupBox", {
-    members: {
-        __ControlVE: new scada.mnemo.dialog.demo.group.ControlVEGroup(),
-        __Calculate: new scada.mnemo.dialog.demo.group.Calculate(),
-        __currentGroup: null,
+    construct() {
+        this.controlVeGoup = new scada.mnemo.dialog.demo.group.ControlVEGroup();
+        this.calculateGroup = new scada.mnemo.dialog.demo.group.CalculateGroup();
+        this.questionGroup = new scada.mnemo.dialog.demo.group.QuestionGroup();
+        this.doubleQuestionGroup = new scada.mnemo.dialog.demo.group.DoubleQuestionGroup();
+        this.temperatureGroup = new scada.mnemo.dialog.demo.group.TemperatureGroup();
+    },
 
-        addGroupBox(group){
-            this.__currentGroup = null;
-            this.__currentGroup = group; //ссылка на готовый GroupBox
-            this.add(this.__currentGroup)
-        }   
+    members: {
+        __currentBox: null,
+
+        addGroupBox(groupName){
+            if(this.__currentBox != null){
+                this.remove(this.__currentBox);
+            }
+            this.__currentBox = groupName; 
+            this.add(this.__currentBox);
+        }
     }
 });

@@ -2,7 +2,8 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
     extend : qx.ui.container.Composite,
     include: [
         scada.mnemo.dialog.demo.MFabricDialog,
-        scada.mnemo.dialog.demo.MDialogController
+        scada.mnemo.dialog.demo.MDialogController,
+        scada.mnemo.dialog.demo.MManagerGroupBox
     ],
 
     construct() {
@@ -115,6 +116,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 const selectedButton = e.getData()[0];
                 const value = selectedButton.getLabel();
                 if(value == "Открыть диалог") {
+                    this.addGroupBox(this.controlVeGoup);
                     this.setDialog(this.getPropControlVE());
                     this.openDialog({x: 300, y: 300}, this.getProtections());
                 }
@@ -127,6 +129,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 const selectedButton = e.getData()[0];
                 const value = selectedButton.getLabel();
                 if(value == "Калькулятор") {
+                    this.addGroupBox(this.calculateGroup);
                     this.setDialog({name: "Calculate"});
                     this.openDialog({x: 300, y: 300}, "")
                 }
@@ -139,6 +142,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 const selectedButton = e.getData()[0];
                 const value = selectedButton.getLabel();
                 if(value == "Вопрос") {
+                    this.addGroupBox(this.questionGroup);
                     this.setDialog({name: "Question", question : {label: "Вы уверены что хотите продолжить?"}});
                     this.openDialog({x: 300, y: 300}, "")
                 }
@@ -151,6 +155,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 const selectedButton = e.getData()[0];
                 const value = selectedButton.getLabel();
                 if(value == "Двойной вопрос") {
+                    this.addGroupBox(this.doubleQuestionGroup);
                     this.setDialog({name: "DoubleQuestion", question : {label: "Вы уверены что хотите продолжить?", key : ""}});
                     this.openDialog({x: 300, y: 300}, "");
                 }
@@ -163,6 +168,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 const selectedButton = e.getData()[0];
                 const value = selectedButton.getLabel();
                 if(value == "Температура") {
+                    this.addGroupBox(this.temperatureGroup);
                     this.setDialog({name: "Temperature", key : ""});
                     this.openDialog({x: 300, y: 300}, "");
                 }

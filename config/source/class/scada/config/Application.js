@@ -54,21 +54,7 @@ qx.Class.define("scada.config.Application",
       */
 
       // Create a button
-      var button1 = new qx.ui.form.Button("Click me", "config/test.png");
-
-      // Document is the application root
-      var doc = this.getRoot();
-
-      // Add button to document at fixed coordinates
-      doc.add(button1, {left: 100, top: 50});
-
-
-      const stub = scada.config.settings.Manager.getIntance();
-      // Add an event listener
-      button1.addListener("execute", function() {
-        console.log(stub.getOptValue(port));
-        /* eslint no-alert: "off" */
-      });
+      
     }
   }
 });

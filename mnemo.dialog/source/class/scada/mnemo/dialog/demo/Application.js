@@ -52,7 +52,7 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
         new qx.ui.layout.Canvas()
       )
 
-      const listDialog = new scada.mnemo.dialog.demo.ListDialog("Диалоги");
+      const listDialog = new scada.mnemo.dialog.demo.ListDialog();
       listDialog.openAllDialog();
 
       // dialogControlContainer.add(listDialog.setMaket());

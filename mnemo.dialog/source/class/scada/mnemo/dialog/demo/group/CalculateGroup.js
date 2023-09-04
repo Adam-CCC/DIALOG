@@ -1,8 +1,8 @@
-qx.Class.define("scada.mnemo.dialog.demo.group.ControlVEGroup", {
+qx.Class.define("scada.mnemo.dialog.demo.group.CalculateGroup", {
     extend: qx.ui.groupbox.GroupBox,
 
     construct() {
-        super("Диалог ВЕ");
+        super("Калькулятор");
         this.setLayout(new qx.ui.layout.VBox());
     },
 
