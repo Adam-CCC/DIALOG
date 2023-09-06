@@ -46,7 +46,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                         "subscribe": true
                     }
                 ],
-                "СТАТУС": [
+                "БЛЯТЬ": [
                     {
                         "label": "БВ включен/выключен",
                         "key": "<<prefix>>.Интер.БВ",
@@ -75,9 +75,8 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 avr: {
                 key: "hello"
                 },
-                // center: true,
+                center: true,
                 // leftCoord: true,
-                topCoord: true,
                 question: {
                 label: "ЛВ2?",
                 key: "question",
