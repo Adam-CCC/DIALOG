@@ -3,7 +3,12 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
     include: [
         scada.mnemo.dialog.demo.MFabricDialog,
         scada.mnemo.dialog.demo.MDialogController,
-        scada.mnemo.dialog.demo.MManagerGroupBox
+        scada.mnemo.dialog.demo.MManagerGroupBox,
+        scada.mnemo.dialog.demo.group.MControlVEGroup,
+        scada.mnemo.dialog.demo.group.MCalculateGroup,
+        scada.mnemo.dialog.demo.group.MQuestionGroup,
+        scada.mnemo.dialog.demo.group.MDoubleQuestionGroup,
+        scada.mnemo.dialog.demo.group.MTemperatureGroup
     ],
 
     construct() {
@@ -12,7 +17,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
 
     properties: {
         propControlVE : {
-            init: { 
+            init: {
                 reset_keys: [
                 {
                     "label": "",
@@ -46,7 +51,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                         "subscribe": true
                     }
                 ],
-                "БЛЯТЬ": [
+                "СТАТУС": [
                     {
                         "label": "БВ включен/выключен",
                         "key": "<<prefix>>.Интер.БВ",
@@ -76,7 +81,6 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 key: "hello"
                 },
                 center: true,
-                // leftCoord: true,
                 question: {
                 label: "ЛВ2?",
                 key: "question",

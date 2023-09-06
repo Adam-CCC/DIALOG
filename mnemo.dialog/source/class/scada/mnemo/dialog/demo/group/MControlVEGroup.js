@@ -1,4 +1,4 @@
-qx.Class.define("scada.mnemo.dialog.demo.group.ControlVEGroup", {
+qx.Mixin.define("scada.mnemo.dialog.demo.group.MControlVEGroup", {
     extend: qx.ui.groupbox.GroupBox,
 
     construct() {
@@ -6,7 +6,7 @@ qx.Class.define("scada.mnemo.dialog.demo.group.ControlVEGroup", {
         this.setLayout(new qx.ui.layout.VBox());
 
         //GroupBox "Позиция"
-        this.positionBox = new qx.ui.groupbox.GroupBox("Позиция")
+        this.positionBox = new qx.ui.groupbox.GroupBox("Позиция");
         this.positionBox.setLayout(new qx.ui.layout.HBox());
         this.add(this.positionBox);
 
@@ -31,24 +31,18 @@ qx.Class.define("scada.mnemo.dialog.demo.group.ControlVEGroup", {
         //Add input
         this.add(this.inputText);
         this.add(this.buttonEnter);
-
-        this.setDialogPos();
     },
 
     members: {
-        setDialogPos(){
-            const binder = new qx.data.SingleValueBinding();
-            binder.bind(this.inputText, "value", this.getControlVE(), "key");
-
-            // Добавляем слушателя события input к полю ввода
-            this.inputText.addListener("input", function(e) {
-                binder.sync();
-            }, this);
-
-            // Добавляем слушателя события "execute" к кнопке
-            this.buttonEnter.addListener("execute", function(e) {
-                binder.sync();
-            }, this);
+        setDialogPos(func){
+            this.positionManager.addListener("changeSelection", function (e) {
+                const selectedButton = e.getData()[0];
+                const value = selectedButton.getLabel();
+                if(value == "Центр") {
+                    func;
+                }
+            })
+            
         }
     }
 });

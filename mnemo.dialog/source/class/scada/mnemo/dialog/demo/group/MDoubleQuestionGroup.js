@@ -1,4 +1,4 @@
-qx.Class.define("scada.mnemo.dialog.demo.group.DoubleQuestionGroup", {
+qx.Mixin.define("scada.mnemo.dialog.demo.group.MDoubleQuestionGroup", {
     extend: qx.ui.groupbox.GroupBox,
 
     construct() {

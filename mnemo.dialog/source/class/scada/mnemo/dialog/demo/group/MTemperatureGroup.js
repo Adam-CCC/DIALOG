@@ -1,8 +1,8 @@
-qx.Class.define("scada.mnemo.dialog.demo.group.QuestionGroup", {
+qx.Mixin.define("scada.mnemo.dialog.demo.group.MTemperatureGroup", {
     extend: qx.ui.groupbox.GroupBox,
 
     construct() {
-        super("Вопрос");
+        super("Температура");
         this.setLayout(new qx.ui.layout.VBox());
     },
 
