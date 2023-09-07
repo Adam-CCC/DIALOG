@@ -1,14 +1,13 @@
 qx.Mixin.define("scada.mnemo.dialog.demo.group.MControlVEGroup", {
-    extend: qx.ui.groupbox.GroupBox,
 
     construct() {
-        super("Диалог ВЕ");
-        this.setLayout(new qx.ui.layout.VBox());
+        this.controlVEGroup = new qx.ui.groupbox.GroupBox("Диалоги ВЕ");
+        this.controlVEGroup.setLayout(new qx.ui.layout.VBox());
 
         //GroupBox "Позиция"
         this.positionBox = new qx.ui.groupbox.GroupBox("Позиция");
         this.positionBox.setLayout(new qx.ui.layout.HBox());
-        this.add(this.positionBox);
+        this.controlVEGroup.add(this.positionBox);
 
         //RadioButtons in "Позиция"
         this.centerBtn = new qx.ui.form.RadioButton("Центр");
@@ -29,19 +28,21 @@ qx.Mixin.define("scada.mnemo.dialog.demo.group.MControlVEGroup", {
         this.positionBox.add(this.topBtn);
 
         //Add input
-        this.add(this.inputText);
-        this.add(this.buttonEnter);
+        this.controlVEGroup.add(this.inputText);
+        this.controlVEGroup.add(this.buttonEnter);
+
+        this.setDialogPos()
     },
 
     members: {
-        setDialogPos(func){
+        setDialogPos(){
             this.positionManager.addListener("changeSelection", function (e) {
                 const selectedButton = e.getData()[0];
                 const value = selectedButton.getLabel();
                 if(value == "Центр") {
-                    func;
+                    
                 }
-            })
+            }, this)
             
         }
     }

@@ -10,7 +10,7 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MManagerGroupBox", {
     // members: {
     //     __currentBox: null,
 
-    //     addGroupBox(groupName){
+    //     addGroupBox(){
     //         if(this.__currentBox != null){
     //             this.remove(this.__currentBox);
     //         }
