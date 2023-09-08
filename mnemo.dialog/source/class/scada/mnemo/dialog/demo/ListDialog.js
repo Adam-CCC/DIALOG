@@ -81,6 +81,8 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 key: "hello"
                 },
                 center: true,
+                leftCoord: 300,
+                topCoord: 300,
                 question: {
                 label: "ЛВ2?",
                 key: "question",
@@ -131,89 +133,8 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 const value = selectedButton.getLabel();
                 if(value == "Открыть диалог") {
                     this.addGroupBox(this.controlVEGroup);
-                    this.setDialog({
-                        reset_keys: [
-                        {
-                            "label": "",
-                            "key": "<<prefix>>.Квитировать"
-                        }
-                        // {
-                        //   "label": "СБРОС 2",
-                        //   "key": "<<prefix>>.Квитировать"
-                        // }
-                        ],
-                        signals: {
-                        "ТЕКУЩИЕ ИЗМЕРЕНИЯ": [
-                            {
-                                "label": "Ток фидера",
-                                "key": "<<prefix>>.Интер.I фид",
-                                "subscribe": true
-                            },
-                            {
-                                "label": "Напряжение фидера",
-                                "key": "<<prefix>>.Интер.U фид",
-                                "subscribe": true
-                            },
-                            {
-                                "label": "Напряжение на линии",
-                                "key": "<<prefix>>.Интер.U лин",
-                                "subscribe": true
-                            },
-                            {
-                                "label": "Температура контактного провода",
-                                "key": "<<prefix>>.Интер.t кп",
-                                "subscribe": true
-                            }
-                        ],
-                        "СТАТУС": [
-                            {
-                                "label": "БВ включен/выключен",
-                                "key": "<<prefix>>.Интер.БВ",
-                                "subscribe": true
-                            },
-                
-                            {
-                                "label": "Цепи сигнализации ВБ не исправны/исправны",
-                                "key": "<<prefix>>.Интер.ЦСИГБВ",
-                                "subscribe": true
-                            },
-                
-                            {
-                                "label": "ОР включен/отключен",
-                                "key": "<<prefix>>.Интер.ОР",
-                                "subscribe": true
-                            }
-                        ]
-                        },
-                        name: "controlVE",
-                        control_ve: {
-                        key: "aaa",
-                        state_key: "bbb"
-                        },
-                        confirmation: true,
-                        avr: {
-                        key: "hello"
-                        },
-                        center: true,
-                        question: {
-                        label: "ЛВ2?",
-                        key: "question",
-                        answers: {
-                            "Включить": 1,
-                            "Отключить": 0
-                        }
-                        },
-                        key: "bbb",
-                        protection: {
-                        key: "aaa",
-                        show_message: true
-                        },
-                        update: {
-                        key: "sss"
-                        }
-                    });
-                    this.openDialog({x: 300, y: 300}, this.getProtections());
-                    console.log(this.getPropControlVE());
+                    this.setDialog(this.getPropControlVE());
+                    this.openDialog({x: this.getPropControlVE().leftCoord, y: this.getPropControlVE().topCoord}, this.getProtections());
                 }
             }, this);
             this.groupDialogs.add(this.radioOpenDialog);
