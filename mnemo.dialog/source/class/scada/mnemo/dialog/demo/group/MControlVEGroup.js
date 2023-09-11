@@ -40,46 +40,18 @@ qx.Mixin.define("scada.mnemo.dialog.demo.group.MControlVEGroup", {
         //Добавление в "Диалоги ВЕ"
         this.controlVEGroup.add(this.buttonEnter, {row: 1, column: 0});
 
-        this.__setDialogCenter();
-        this.__setCordPosition();
+        this.__setPosControlVE();
     },
 
     members: {
         __propControlVE: null,
 
-        __callRefreshControlVE() {
-            this.setDialog(this.getPropControlVE());
-            this.openDialog({x: this.getPropControlVE().leftCoord, y: this.getPropControlVE().topCoord}, this.getProtections());
-        },
-
-        __setDialogCenter(){
+        __setPosControlVE(){
             this.centerBtn.addListener("changeValue", function (e) {
-                    const value = e.getData();
-                    if(value == true){
-                        this.topCoordLabel.setEnabled(false);
-                        this.leftCoordLabel.setEnabled(false);
-
-                        //Получаем текущее значение propControlVE
-                        this.__propControlVE = this.getPropControlVE();
-    
-                        // Устанавливаем значение center в false
-                        this.__propControlVE.center = true;
-    
-                        // Устанавливаем новое значение propControlVE
-                        this.setPropControlVE(this.__propControlVE);
-                        this.__callRefreshControlVE();
-                    } else {
-                        this.topCoordLabel.setEnabled(true);
-                        this.leftCoordLabel.setEnabled(true);
-
-                        this.__propControlVE.center = false;
-                        this.__callRefreshControlVE();
-                    }
-                    
+                const value = e.getData();
+                this.setDialogCenter(value, this.getPropControlVE(), this.leftCoordInput, this.topCoordInput)
             }, this)
-        },
 
-        __setCordPosition() {
             this.buttonEnter.addListener("execute", function(){
                 this.__propControlVE = this.getPropControlVE();
 
@@ -87,10 +59,9 @@ qx.Mixin.define("scada.mnemo.dialog.demo.group.MControlVEGroup", {
                 this.__propControlVE.leftCoord = parseInt(this.leftCoordInput.getValue());
                 this.__propControlVE.topCoord = parseInt(this.topCoordInput.getValue());
                 // Устанавливаем новое значение propControlVE
-                this.setPropControlVE(this.__propControlVE);
 
                 console.log(this.getPropControlVE());
-                this.__callRefreshControlVE();
+                this.refreshDialog(this.getPropControlVE());
             }, this)
         }
     }

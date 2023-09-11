@@ -145,9 +145,9 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 const selectedButton = e.getData()[0];
                 const value = selectedButton.getLabel();
                 if(value == "Калькулятор") {
-                    this.addGroupBox(this.calculateGroup);
+                    this.addGroupBox(this.сalcGroup);
                     this.setDialog({name: "Calculate"});
-                    this.openDialog({x: 300, y: 300}, "")
+                    this.openDialog({x: 300, y: 300}, this.getProtections())
                 }
             },  this);
             this.groupDialogs.add(this.radioCalculate);
@@ -160,7 +160,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 if(value == "Вопрос") {
                     this.addGroupBox(this.questionGroup);
                     this.setDialog({name: "Question", question : {label: "Вы уверены что хотите продолжить?"}});
-                    this.openDialog({x: 300, y: 300}, "")
+                    this.openDialog({x: 300, y: 300}, this.getProtections())
                 }
             }, this);
             this.groupDialogs.add(this.radioQuestion);
@@ -173,7 +173,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 if(value == "Двойной вопрос") {
                     this.addGroupBox(this.doubleQuestionGroup);
                     this.setDialog({name: "DoubleQuestion", question : {label: "Вы уверены что хотите продолжить?", key : ""}});
-                    this.openDialog({x: 300, y: 300}, "");
+                    this.openDialog({x: 300, y: 300}, this.getProtections());
                 }
             }, this);
             this.groupDialogs.add(this.radioDoubleQuestion);
@@ -184,12 +184,35 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 const selectedButton = e.getData()[0];
                 const value = selectedButton.getLabel();
                 if(value == "Температура") {
-                    this.addGroupBox(this.temperatureGroup);
+                    this.addGroupBox(this.questionGroup);
                     this.setDialog({name: "Temperature", key : ""});
-                    this.openDialog({x: 300, y: 300}, "");
+                    this.openDialog({x: 300, y: 300}, this.getProtections());
                 }
             }, this);
             this.groupDialogs.add(this.radioTemperature);
+        },
+
+        refreshDialog(settings) {
+            this.setDialog(settings);
+            this.openDialog({x: settings.leftCoord, y: settings.topCoord}, this.getProtections());
+        },
+
+        setDialogCenter(value, settings, leftInput, topInput){
+            if(value == true){
+                topInput.setEnabled(false);
+                leftInput.setEnabled(false);
+
+                // Устанавливаем значение center в false
+                settings.center = true;
+
+                this.refreshDialog(settings);
+            } else {
+                topInput.setEnabled(true);
+                leftInput.setEnabled(true);
+
+                settings.center = false;
+                this.refreshDialog(settings);
+            }
         }
     }
 });
