@@ -146,7 +146,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 const value = selectedButton.getLabel();
                 if(value == "Калькулятор") {
                     this.addGroupBox(this.сalcGroup);
-                    this.setDialog({name: "Calculate"});
+                    this.setDialog(this.getPropCalculate());
                     this.openDialog({x: 300, y: 300}, this.getProtections())
                 }
             },  this);
@@ -158,8 +158,8 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 const selectedButton = e.getData()[0];
                 const value = selectedButton.getLabel();
                 if(value == "Вопрос") {
-                    this.addGroupBox(this.questionGroup);
-                    this.setDialog({name: "Question", question : {label: "Вы уверены что хотите продолжить?"}});
+                    this.addGroupBox(this.questGroup);
+                    this.setDialog(this.getPropQuest());
                     this.openDialog({x: 300, y: 300}, this.getProtections())
                 }
             }, this);
@@ -171,8 +171,8 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 const selectedButton = e.getData()[0];
                 const value = selectedButton.getLabel();
                 if(value == "Двойной вопрос") {
-                    this.addGroupBox(this.doubleQuestionGroup);
-                    this.setDialog({name: "DoubleQuestion", question : {label: "Вы уверены что хотите продолжить?", key : ""}});
+                    this.addGroupBox(this.dblQuestGroup);
+                    this.setDialog(this.getPropDblQuest());
                     this.openDialog({x: 300, y: 300}, this.getProtections());
                 }
             }, this);
