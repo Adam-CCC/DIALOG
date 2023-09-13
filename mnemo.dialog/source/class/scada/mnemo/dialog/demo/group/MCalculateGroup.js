@@ -15,6 +15,13 @@ qx.Mixin.define("scada.mnemo.dialog.demo.group.MCalculateGroup", {
         gridPosCalc.setColumnAlign(0, "left", "middle");
         this.posBoxCalc.setLayout(gridPosCalc);
 
+        //GroupBox "Позиция"
+        this.setGenCalc = new qx.ui.groupbox.GroupBox("Настройки");
+        const gridGenCalc = new qx.ui.layout.Grid();
+        gridGenCalc.setSpacing(5);
+        gridGenCalc.setColumnAlign(0, "left", "middle");
+        this.setGenCalc.setLayout(gridGenCalc);
+
         //Содержимое "Позиция"
         this.chkCenterCalc = new qx.ui.form.CheckBox("Центр");
         this.leftLabelCalc = new qx.ui.basic.Label("Влево: ");
@@ -34,12 +41,13 @@ qx.Mixin.define("scada.mnemo.dialog.demo.group.MCalculateGroup", {
         this.maxLengthInput = new qx.ui.form.TextField();
         this.btnEnterCalc = new qx.ui.form.Button("Применить");
 
+        this.setGenCalc.add(this.maxLengthInput, {row: 0, column: 1});
+        this.setGenCalc.add(this.maxLengthLabel, {row: 0, column: 0});
+
         //Добавление в "Калькулятор"
         this.сalcGroup.add(this.posBoxCalc, {row: 0, column: 0});
-        this.сalcGroup.add(this.maxLengthInput, {row: 1, column: 1});
-        this.сalcGroup.add(this.maxLengthLabel, {row: 1, column: 0});
-        this.сalcGroup.add(this.btnEnterCalc, {row: 3, column: 0});
-
+        this.сalcGroup.add(this.setGenCalc, {row: 1, column: 0});
+        this.сalcGroup.add(this.btnEnterCalc, {row: 2, column: 0});
         this.__setPosCalculate();
     },
 
