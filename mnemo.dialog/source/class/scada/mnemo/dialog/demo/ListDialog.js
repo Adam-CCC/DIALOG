@@ -184,8 +184,8 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 const selectedButton = e.getData()[0];
                 const value = selectedButton.getLabel();
                 if(value == "Температура") {
-                    this.addGroupBox(this.questionGroup);
-                    this.setDialog({name: "Temperature", key : ""});
+                    this.addGroupBox(this.tempGroup);
+                    this.setDialog(this.getPropTemp());
                     this.openDialog({x: 300, y: 300}, this.getProtections());
                 }
             }, this);
