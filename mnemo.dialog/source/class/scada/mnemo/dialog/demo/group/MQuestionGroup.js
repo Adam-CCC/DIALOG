@@ -80,7 +80,11 @@ qx.Mixin.define("scada.mnemo.dialog.demo.group.MQuestionGroup", {
             }, this)
 
             this.btnEnterQuest.addListener("execute", function(){
-                this.getPropQuest().question.label = this.inputQuest.getValue();
+
+                if (this.inputQuest.getValue() != null){
+                    this.getPropQuest().question.label = this.inputQuest.getValue();
+                }
+
 
                 this.getPropQuest().leftCoord = parseInt(this.leftInputQuest.getValue());
                 this.getPropQuest().topCoord = parseInt(this.topInputQuest.getValue());
