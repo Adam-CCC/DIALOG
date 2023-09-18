@@ -76,18 +76,13 @@ qx.Mixin.define("scada.mnemo.dialog.demo.group.MQuestionGroup", {
         __setPosQuest(){
             this.chkCenterQuest.addListener("changeValue", function (e) {
                 const value = e.getData();
-                this.setDialogCenter(value, this.getPropQuest(), this.leftInputQuest, this.topInputQuest);
+                this.setDialogCenter(value, this.getPropQuest(), this.leftInput, this.topInput);
             }, this)
 
             this.btnEnterQuest.addListener("execute", function(){
 
-                if (this.inputQuest.getValue() != null){
-                    this.getPropQuest().question.label = this.inputQuest.getValue();
-                }
-
-
-                this.getPropQuest().leftCoord = parseInt(this.leftInputQuest.getValue());
-                this.getPropQuest().topCoord = parseInt(this.topInputQuest.getValue());
+                this.getPropQuest().leftCoord = parseInt(this.leftInput.getValue());
+                this.getPropQuest().topCoord = parseInt(this.topInput.getValue());
 
                 this.refreshDialog(this.getPropQuest());
             }, this)
