@@ -26,6 +26,8 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
         this.leftInput = new qx.ui.form.TextField();
         this.topInput = new qx.ui.form.TextField();
 
+        this.btnEnter = new qx.ui.form.Button("Применить");
+
         //Добавление в "Позиция"
         this.posBox.add(this.chkCenter, {row: 0, column: 0});
         this.posBox.add(this.leftLabel, {row: 1, column: 0});
@@ -35,9 +37,9 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
 
         this.generalGroup.add(this.posBox);
 
+        this.generalGroup.add(this.btnEnter)
+
         this.add(this.generalGroup);
-        
-        // this.chkCenter();
     },
     
     members: {
@@ -55,22 +57,18 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
             this.groupControlDialogs.add(this.radioRemoveProtection);
         },
 
-        __setPosQuest(){
-            this.chkCenterQuest.addListener("changeValue", function (e) {
+        setPos(prop){
+            this.chkCenter.addListener("changeValue", function (e) {
                 const value = e.getData();
-                this.setDialogCenter(value, this.getPropQuest(), this.leftInputQuest, this.topInputQuest);
+                this.setDialogCenter(value, prop, this.leftInputQuest, this.topInputQuest);
             }, this)
 
-            this.btnEnterQuest.addListener("execute", function(){
+            this.btnEnter.addListener("execute", function(){
 
-                if (this.inputQuest.getValue() != null){
-                    this.getPropQuest().question.label = this.inputQuest.getValue();
-                }
+                prop.leftCoord = parseInt(this.leftInput.getValue());
+                prop.topCoord = parseInt(this.topInput.getValue());
 
-                this.getPropQuest().leftCoord = parseInt(this.leftInputQuest.getValue());
-                this.getPropQuest().topCoord = parseInt(this.topInputQuest.getValue());
-
-                this.refreshDialog(this.getPropQuest());
+                this.refreshDialog(prop);
             }, this)
         }
     }

@@ -8,10 +8,6 @@ qx.Mixin.define("scada.mnemo.dialog.demo.group.MControlVEGroup", {
         gridVEGroup.setSpacing(5);
         gridVEGroup.setColumnAlign(0, "left", "middle");
         this.controlVEGroup.setLayout(gridVEGroup);
-
-        this.add(this.controlVEGroup);
-
-        this.chkCenterFunc(this.getPropControlVE());
     },
 
     members: {

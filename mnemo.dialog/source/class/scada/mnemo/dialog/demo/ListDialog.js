@@ -133,6 +133,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 const value = selectedButton.getLabel();
                 if(value == "Открыть диалог") {
                     this.addGroupBox(this.controlVEGroup);
+                    this.setPos(this.getPropControlVE())
                     this.setDialog(this.getPropControlVE());
                     this.openDialog({x: 300, y: 300}, this.getProtections());
                     
@@ -217,11 +218,11 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
             }
         },
 
-        chkCenterFunc(value, settings, leftInput, topInput){
-            this.chkCenter.addListener("changeValue", function (e) {
-                const value = e.getData();
-                this.setDialogCenter(value, settings, leftInput, topInput);
-            }, this)
-        }
+        // chkCenterFunc(value, settings, leftInput, topInput){
+        //     this.chkCenter.addListener("changeValue", function (e) {
+        //         const value = e.getData();
+        //         this.setDialogCenter(value, settings, leftInput, topInput);
+        //     }, this)
+        // }
     }
 });
