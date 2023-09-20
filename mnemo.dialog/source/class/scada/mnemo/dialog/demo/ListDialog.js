@@ -133,7 +133,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 const value = selectedButton.getLabel();
                 if(value == "Открыть диалог") {
                     this.addGroupBox(this.controlVEGroup);
-                    this.setPos(this.getPropControlVE())
+                    this.chkCenterFunc(this.getPropControlVE())
                     this.setDialog(this.getPropControlVE());
                     this.openDialog({x: 300, y: 300}, this.getProtections());
                     
@@ -192,37 +192,6 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 }
             }, this);
             this.groupDialogs.add(this.radioTemperature);
-        },
-
-        refreshDialog(settings) {
-            this.setDialogCenter()
-            this.setDialog(settings);
-            this.openDialog({x: settings.leftCoord, y: settings.topCoord}, this.getProtections());
-        },
-
-        setDialogCenter(value, settings, leftInput, topInput){
-            if(value == true){
-                topInput.setEnabled(false);
-                leftInput.setEnabled(false);
-
-                // Устанавливаем значение center в false
-                settings.center = true;
-
-                this.refreshDialog(settings);
-            } else {
-                topInput.setEnabled(true);
-                leftInput.setEnabled(true);
-
-                settings.center = false;
-                this.refreshDialog(settings);
-            }
-        },
-
-        // chkCenterFunc(value, settings, leftInput, topInput){
-        //     this.chkCenter.addListener("changeValue", function (e) {
-        //         const value = e.getData();
-        //         this.setDialogCenter(value, settings, leftInput, topInput);
-        //     }, this)
-        // }
+        }
     }
 });

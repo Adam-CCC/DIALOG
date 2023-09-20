@@ -57,19 +57,49 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
             this.groupControlDialogs.add(this.radioRemoveProtection);
         },
 
-        setPos(prop){
+        // setPos(prop){
+        //     this.chkCenter.addListener("changeValue", function (e) {
+        //         const value = e.getData();
+        //         this.setDialogCenter(value, prop, this.leftInputQuest, this.topInputQuest);
+        //     }, this)
+
+        //     this.btnEnter.addListener("execute", function(){
+
+        //         prop.leftCoord = parseInt(this.leftInput.getValue());
+        //         prop.topCoord = parseInt(this.topInput.getValue());
+
+        //         this.refreshDialog(prop);
+        //     }, this)
+        // }
+
+        refreshDialog(settings) {
+            this.setDialog(settings);
+            this.openDialog({x: settings.leftCoord, y: settings.topCoord}, this.getProtections());
+        },
+
+        chkCenterFunc(settings){
             this.chkCenter.addListener("changeValue", function (e) {
                 const value = e.getData();
-                this.setDialogCenter(value, prop, this.leftInputQuest, this.topInputQuest);
+                if(value == true){
+                    this.topInput.setEnabled(false);
+                    this.leftInput.setEnabled(false);
+    
+                    // Устанавливаем значение center в false
+                    settings.center = true;
+    
+                    this.refreshDialog(settings);
+                } else {
+                    this.topInput.setEnabled(true);
+                    this.leftInput.setEnabled(true);
+    
+                    settings.center = false;
+                    this.refreshDialog(settings);
+                }
             }, this)
 
             this.btnEnter.addListener("execute", function(){
-
-                prop.leftCoord = parseInt(this.leftInput.getValue());
-                prop.topCoord = parseInt(this.topInput.getValue());
-
-                this.refreshDialog(prop);
-            }, this)
+                
+            })
         }
     }
 });
