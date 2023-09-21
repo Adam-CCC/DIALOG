@@ -98,7 +98,9 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
             }, this)
 
             this.btnEnter.addListener("execute", function(){
-                
+                settings.leftCoord = parseInt(this.leftInput.getValue());
+                settings.topCoord = parseInt(this.topInput.getValue());
+                this.refreshDialog(settings);
             })
         }
     }
