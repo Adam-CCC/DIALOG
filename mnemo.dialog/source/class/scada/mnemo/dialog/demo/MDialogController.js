@@ -35,6 +35,8 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
         this.posBox.add(this.leftInput, {row: 1, column: 1});
         this.posBox.add(this.topInput, {row: 2, column: 1});
 
+        console.log(this.leftInput.getValue());
+
         this.generalGroup.add(this.posBox);
 
         this.generalGroup.add(this.btnEnter)
@@ -78,30 +80,36 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
         },
 
         chkCenterFunc(settings){
+            this.leftInput.setValue("");
+            this.topInput.setValue("");
+            this.chkCenter.setValue(false);
+
             this.chkCenter.addListener("changeValue", function (e) {
                 const value = e.getData();
                 if(value == true){
                     this.topInput.setEnabled(false);
                     this.leftInput.setEnabled(false);
-    
+
                     // Устанавливаем значение center в false
                     settings.center = true;
     
-                    this.refreshDialog(settings);
                 } else {
                     this.topInput.setEnabled(true);
                     this.leftInput.setEnabled(true);
     
                     settings.center = false;
-                    this.refreshDialog(settings);
                 }
+                this.refreshDialog(settings);
             }, this)
 
             this.btnEnter.addListener("execute", function(){
-                settings.leftCoord = parseInt(this.leftInput.getValue());
-                settings.topCoord = parseInt(this.topInput.getValue());
-                this.refreshDialog(settings);
-            })
+                if(this.leftInput.getValue() && this.topInput.getValue() != null){
+                    settings.leftCoord = parseInt(this.leftInput.getValue());
+                    settings.topCoord = parseInt(this.topInput.getValue());
+                    alert("hhh")
+                    this.refreshDialog(settings);
+                }
+            }, this)
         }
     }
 });

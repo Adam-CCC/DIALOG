@@ -148,6 +148,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 const value = selectedButton.getLabel();
                 if(value == "Калькулятор") {
                     this.addGroupBox(this.сalcGroup);
+                    this.chkCenterFunc(this.getPropCalculate());
                     this.setDialog(this.getPropCalculate());
                     this.openDialog({x: 300, y: 300}, this.getProtections())
                 }
@@ -161,6 +162,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 const value = selectedButton.getLabel();
                 if(value == "Вопрос") {
                     this.addGroupBox(this.questGroup);
+                    this.chkCenterFunc(this.getPropQuest());
                     this.setDialog(this.getPropQuest());
                     this.openDialog({x: 300, y: 300}, this.getProtections())
                 }
@@ -174,6 +176,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 const value = selectedButton.getLabel();
                 if(value == "Двойной вопрос") {
                     this.addGroupBox(this.dblQuestGroup);
+                    this.chkCenterFunc(this.getPropDblQuest());
                     this.setDialog(this.getPropDblQuest());
                     this.openDialog({x: 300, y: 300}, this.getProtections());
                 }
@@ -187,6 +190,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 const value = selectedButton.getLabel();
                 if(value == "Температура") {
                     this.addGroupBox(this.tempGroup);
+                    this.chkCenterFunc(this.getPropTemp());
                     this.setDialog(this.getPropTemp());
                     this.openDialog({x: 300, y: 300}, this.getProtections());
                 }
