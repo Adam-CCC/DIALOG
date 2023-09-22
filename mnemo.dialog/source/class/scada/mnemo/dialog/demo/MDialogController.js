@@ -35,8 +35,6 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
         this.posBox.add(this.leftInput, {row: 1, column: 1});
         this.posBox.add(this.topInput, {row: 2, column: 1});
 
-        console.log(this.leftInput.getValue());
-
         this.generalGroup.add(this.posBox);
 
         this.generalGroup.add(this.btnEnter)
@@ -80,36 +78,51 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
         },
 
         chkCenterFunc(settings){
+            alert("Начало функции");
+            this.chkCenter.setValue(false);
             this.leftInput.setValue("");
             this.topInput.setValue("");
-            this.chkCenter.setValue(false);
 
             this.chkCenter.addListener("changeValue", function (e) {
+                alert("Начало обработчика");
                 const value = e.getData();
                 if(value == true){
+                    alert("Начало true");
                     this.topInput.setEnabled(false);
                     this.leftInput.setEnabled(false);
-
+    
                     // Устанавливаем значение center в false
                     settings.center = true;
-    
+
+                    this.setDialog(settings);
+                    this.openDialog({x: settings.leftCoord, y: settings.topCoord}, this.getProtections());
+                    alert("Конец true");
                 } else {
+                    alert("Начало false");
                     this.topInput.setEnabled(true);
                     this.leftInput.setEnabled(true);
     
                     settings.center = false;
+
+                    this.setDialog(settings);
+                    this.openDialog({x: settings.leftCoord, y: settings.topCoord}, this.getProtections());
+                    alert("Конец false");
                 }
-                this.refreshDialog(settings);
             }, this)
 
+            this.chkCenter.removeEventListener("changeValue");
+
             this.btnEnter.addListener("execute", function(){
-                if(this.leftInput.getValue() && this.topInput.getValue() != null){
+                if(this.leftInput.getValue() || this.topInput.getValue() == ""){
                     settings.leftCoord = parseInt(this.leftInput.getValue());
                     settings.topCoord = parseInt(this.topInput.getValue());
-                    alert("hhh")
-                    this.refreshDialog(settings);
+
+                    alert("3");
+                    this.setDialog(settings);
+                    this.openDialog({x: settings.leftCoord, y: settings.topCoord}, this.getProtections());
                 }
             }, this)
+            alert("Конец")
         }
     }
 });
