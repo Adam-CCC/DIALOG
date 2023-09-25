@@ -136,7 +136,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                     this.chkCenterFunc(this.getPropControlVE())
                     this.setDialog(this.getPropControlVE());
                     this.openDialog({x: 300, y: 300}, this.getProtections());
-                    
+                                                        
                 }
             }, this);
             this.groupDialogs.add(this.radioOpenDialog);
