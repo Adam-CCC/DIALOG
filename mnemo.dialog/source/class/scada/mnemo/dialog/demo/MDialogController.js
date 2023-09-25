@@ -43,6 +43,8 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
     },
     
     members: {
+        __prop: null,
+
         managerAddlistener() {
             this.manager.addListener("changeSelection", function (e) {
                 const selectedButton = e.getData()[0];
@@ -77,52 +79,49 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
             this.openDialog({x: settings.leftCoord, y: settings.topCoord}, this.getProtections());
         },
 
+        changeCenter(e){
+            const value = e.getData();
+            if(value == true){
+                this.topInput.setEnabled(false);
+                this.leftInput.setEnabled(false);
+
+                // Устанавливаем значение center в false
+                this.__prop.center = true;
+
+                this.setDialog(this.__prop);
+                this.openDialog({x: this.__prop.leftCoord, y: this.__prop.topCoord}, this.getProtections());
+            } else {
+                this.topInput.setEnabled(true);
+                this.leftInput.setEnabled(true);
+
+                this.__prop.center = false;
+
+                this.setDialog(this.__prop);
+                this.openDialog({x: this.__prop.leftCoord, y: this.__prop.topCoord}, this.getProtections());
+            }
+        },
+
         chkCenterFunc(settings){
-            alert("Начало функции");
+            this.__prop = settings;
+            const prop = this.__prop;
+
             this.chkCenter.setValue(false);
             this.leftInput.setValue("");
             this.topInput.setValue("");
 
-            this.chkCenter.addListener("changeValue", function (e) {
-                alert("Начало обработчика");
-                const value = e.getData();
-                if(value == true){
-                    alert("Начало true");
-                    this.topInput.setEnabled(false);
-                    this.leftInput.setEnabled(false);
-    
-                    // Устанавливаем значение center в false
-                    settings.center = true;
+            this.chkCenter.removeListener("changeValue", this.changeCenter, this)
 
-                    this.setDialog(settings);
-                    this.openDialog({x: settings.leftCoord, y: settings.topCoord}, this.getProtections());
-                    alert("Конец true");
-                } else {
-                    alert("Начало false");
-                    this.topInput.setEnabled(true);
-                    this.leftInput.setEnabled(true);
-    
-                    settings.center = false;
-
-                    this.setDialog(settings);
-                    this.openDialog({x: settings.leftCoord, y: settings.topCoord}, this.getProtections());
-                    alert("Конец false");
-                }
-            }, this)
-
-            this.chkCenter.removeEventListener("changeValue");
+            this.chkCenter.addListener("changeValue", this.changeCenter, this)
 
             this.btnEnter.addListener("execute", function(){
                 if(this.leftInput.getValue() || this.topInput.getValue() == ""){
-                    settings.leftCoord = parseInt(this.leftInput.getValue());
-                    settings.topCoord = parseInt(this.topInput.getValue());
+                    prop.leftCoord = parseInt(this.leftInput.getValue());
+                    prop.topCoord = parseInt(this.topInput.getValue());
 
-                    alert("3");
-                    this.setDialog(settings);
-                    this.openDialog({x: settings.leftCoord, y: settings.topCoord}, this.getProtections());
+                    this.setDialog(prop);
+                    this.openDialog({x: prop.leftCoord, y: prop.topCoord}, this.getProtections());
                 }
             }, this)
-            alert("Конец")
         }
     }
 });
