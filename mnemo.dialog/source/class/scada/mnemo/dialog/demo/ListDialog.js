@@ -134,9 +134,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 if(value == "Открыть диалог") {
                     this.addGroupBox(this.controlVEGroup);
                     this.chkCenterFunc(this.getPropControlVE())
-                    this.setDialog(this.getPropControlVE());
-                    this.openDialog({x: 300, y: 300}, this.getProtections());
-                                                        
+                    this.setDialog(this.getPropControlVE(), this.getProtections());
                 }
             }, this);
             this.groupDialogs.add(this.radioOpenDialog);
@@ -149,8 +147,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 if(value == "Калькулятор") {
                     this.addGroupBox(this.сalcGroup);
                     this.chkCenterFunc(this.getPropCalculate());
-                    this.setDialog(this.getPropCalculate());
-                    this.openDialog({x: 300, y: 300}, this.getProtections())
+                    this.setDialog(this.getPropCalculate(), this.getProtections());
                 }
             },  this);
             this.groupDialogs.add(this.radioCalculate);
@@ -163,8 +160,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 if(value == "Вопрос") {
                     this.addGroupBox(this.questGroup);
                     this.chkCenterFunc(this.getPropQuest());
-                    this.setDialog(this.getPropQuest());
-                    this.openDialog({x: 300, y: 300}, this.getProtections())
+                    this.setDialog(this.getPropQuest(), this.getProtections());
                 }
             }, this);
             this.groupDialogs.add(this.radioQuestion);
@@ -177,8 +173,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 if(value == "Двойной вопрос") {
                     this.addGroupBox(this.dblQuestGroup);
                     this.chkCenterFunc(this.getPropDblQuest());
-                    this.setDialog(this.getPropDblQuest());
-                    this.openDialog({x: 300, y: 300}, this.getProtections());
+                    this.setDialog(this.getPropDblQuest(), this.getProtections());
                 }
             }, this);
             this.groupDialogs.add(this.radioDoubleQuestion);
@@ -191,8 +186,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 if(value == "Температура") {
                     this.addGroupBox(this.tempGroup);
                     this.chkCenterFunc(this.getPropTemp());
-                    this.setDialog(this.getPropTemp());
-                    this.openDialog({x: 300, y: 300}, this.getProtections());
+                    this.setDialog(this.getPropTemp(), this.getProtections());
                 }
             }, this);
             this.groupDialogs.add(this.radioTemperature);

@@ -59,32 +59,13 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
             this.groupControlDialogs.add(this.radioRemoveProtection);
         },
 
-        // setPos(prop){
-        //     this.chkCenter.addListener("changeValue", function (e) {
-        //         const value = e.getData();
-        //         this.setDialogCenter(value, prop, this.leftInputQuest, this.topInputQuest);
-        //     }, this)
-
-        //     this.btnEnter.addListener("execute", function(){
-
-        //         prop.leftCoord = parseInt(this.leftInput.getValue());
-        //         prop.topCoord = parseInt(this.topInput.getValue());
-
-        //         this.refreshDialog(prop);
-        //     }, this)
-        // }
-
-        __refreshDialog(settings) {
-            this.setDialog(settings);
-            this.openDialog({x: settings.leftCoord, y: settings.topCoord}, this.getProtections());
-        },
 
         __changePos(){
             if(this.leftInput.getValue() || this.topInput.getValue() == ""){
                 this.__prop.leftCoord = parseInt(this.leftInput.getValue());
                 this.__prop.topCoord = parseInt(this.topInput.getValue());
 
-                this.__refreshDialog(this.__prop);
+                this.refreshDialog(this.__prop);
             }
         },
 
@@ -97,14 +78,14 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
                 // Устанавливаем значение center в false
                 this.__prop.center = true;
 
-                this.__refreshDialog(this.__prop)
+                this.refreshDialog(this.__prop)
             } else {
                 this.topInput.setEnabled(true);
                 this.leftInput.setEnabled(true);
 
                 this.__prop.center = false;
 
-                this.__refreshDialog(this.__prop);
+                this.refreshDialog(this.__prop);
             }
         },
 
