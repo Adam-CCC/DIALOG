@@ -39,8 +39,8 @@ qx.Mixin.define("scada.mnemo.dialog.demo.group.MQuestionGroup", {
 
     members: {
         __changeDataQuest() {
-            if(this.precisionTextField.getValue() || this.digitCountTextField.getValue() != null){
-                this.getPropQuest().question.label = parseInt(this.questText.getValue());
+            if(this.questText.getValue() != null){
+                this.getPropQuest().question.label = this.questText.getValue();
 
                 this.refreshDialog(this.getPropQuest());
             }
