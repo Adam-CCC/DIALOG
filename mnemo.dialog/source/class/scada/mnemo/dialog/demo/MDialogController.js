@@ -37,6 +37,9 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
 
         this.generalGroup.add(this.posBox);
 
+        this.groupControlDialogs.add(this.radioProtection);
+        this.groupControlDialogs.add(this.radioRemoveProtection);
+
         this.generalGroup.add(this.btnEnter)
 
         this.add(this.generalGroup);
@@ -45,18 +48,15 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
     members: {
         __prop: null,
 
-        managerAddlistener() {
-            this.manager.addListener("changeSelection", function (e) {
-                const selectedButton = e.getData()[0];
-                const value = selectedButton.getLabel();
-                if(value == "Заблокировать") {
-                    this.setProtections({"aaa":1});  
-                } else if (value == "Разблокировать") {
-                    this.setProtections({"aaa":0});  
-                }
-            }, this)
-            this.groupControlDialogs.add(this.radioProtection);
-            this.groupControlDialogs.add(this.radioRemoveProtection);
+        __managerAddlistener(e) {
+            console.log(this.__prop);
+            const selectedButton = e.getData()[0];
+            const value = selectedButton.getLabel();
+            if(value == "Заблокировать") {
+                this.__prop.protections = {"aaa":1};
+            } else if (value == "Разблокировать") {
+                this.__prop.protections = {"aaa":0};  
+            }
         },
 
 
@@ -96,13 +96,14 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
             this.leftInput.setValue("");
             this.topInput.setValue("");
 
-            this.chkCenter.removeListener("changeValue", this.__changeCenter, this)
+            this.chkCenter.removeListener("changeValue", this.__changeCenter, this);
+            this.chkCenter.addListener("changeValue", this.__changeCenter, this);
 
-            this.chkCenter.addListener("changeValue", this.__changeCenter, this)
+            this.btnEnter.removeListener("execute", this.__changePos, this);
+            this.btnEnter.addListener("execute", this.__changePos, this);
 
-            this.btnEnter.removeListener("execute", this.__changePos, this)
-
-            this.btnEnter.addListener("execute", this.__changePos, this)
+            this.manager.removeListener("changeSelection", this.__managerAddlistener, this);
+            this.manager.addListener("changeSelection", this.__managerAddlistener, this);
         }
     }
 });

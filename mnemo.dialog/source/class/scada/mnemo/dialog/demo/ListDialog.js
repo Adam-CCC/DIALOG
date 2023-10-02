@@ -92,6 +92,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 }
                 },
                 key: "bbb",
+                protections: "",
                 protection: {
                 key: "aaa",
                 show_message: true
@@ -100,11 +101,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 key: "sss"
                 }
             }
-        },
-
-        protections : {
-            init: ""
-        },
+        }
     },
 
     members: {
@@ -124,7 +121,6 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
             this._openQuestion();
             this._openDoubleQuestion();
             this._openTemperature();
-            this.managerAddlistener();
         },
 
         _openControlVE() {
@@ -134,7 +130,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 if(value == "Открыть диалог") {
                     this.addGroupBox(this.controlVEGroup);
                     this.chkCenterFunc(this.getPropControlVE())
-                    this.setDialog(this.getPropControlVE(), this.getProtections());
+                    this.setDialog(this.getPropControlVE());
                 }
             }, this);
             this.groupDialogs.add(this.radioOpenDialog);
@@ -147,7 +143,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 if(value == "Калькулятор") {
                     this.addGroupBox(this.сalcGroup);
                     this.chkCenterFunc(this.getPropCalculate());
-                    this.setDialog(this.getPropCalculate(), this.getProtections());
+                    this.setDialog(this.getPropCalculate());
                 }
             },  this);
             this.groupDialogs.add(this.radioCalculate);
@@ -160,7 +156,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 if(value == "Вопрос") {
                     this.addGroupBox(this.questGroup);
                     this.chkCenterFunc(this.getPropQuest());
-                    this.setDialog(this.getPropQuest(), this.getProtections());
+                    this.setDialog(this.getPropQuest());
                 }
             }, this);
             this.groupDialogs.add(this.radioQuestion);
@@ -173,7 +169,7 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 if(value == "Двойной вопрос") {
                     this.addGroupBox(this.dblQuestGroup);
                     this.chkCenterFunc(this.getPropDblQuest());
-                    this.setDialog(this.getPropDblQuest(), this.getProtections());
+                    this.setDialog(this.getPropDblQuest());
                 }
             }, this);
             this.groupDialogs.add(this.radioDoubleQuestion);
@@ -184,9 +180,12 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 const selectedButton = e.getData()[0];
                 const value = selectedButton.getLabel();
                 if(value == "Температура") {
+                    const data = {
+                        temperature: 25.5, // Значение для ключа "temperature"
+                    };
                     this.addGroupBox(this.tempGroup);
                     this.chkCenterFunc(this.getPropTemp());
-                    this.setDialog(this.getPropTemp(), this.getProtections());
+                    this.setDialog(this.getPropTemp(), data);
                 }
             }, this);
             this.groupDialogs.add(this.radioTemperature);

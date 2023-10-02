@@ -26,6 +26,7 @@ qx.Mixin.define("scada.mnemo.dialog.demo.group.MQuestionGroup", {
             init: {
                 name: "Question",
                 question: {label: "Вы хотите продолжить?"},
+                protections: "",
                 center: true,
                 leftCoord: 300,
                 topCoord: 300,

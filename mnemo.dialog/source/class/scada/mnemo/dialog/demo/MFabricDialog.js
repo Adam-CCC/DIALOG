@@ -23,14 +23,16 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MFabricDialog", {
         __manager: new scada.mnemo.dialog.dialogs.Manager(),
         __dialogs: new scada.mnemo.dialog.demo.Dialogs(),
 
-        setDialog(config, value) {
+        setDialog(config) {
             this.__manager.setDialogFactory(this.__dialogs);
             this.__manager.setDialog(config);
-            this.__manager.openDialog({x: config.leftCoord, y: config.topCoord}, value);
+            this.__manager.openDialog({x: config.leftCoord, y: config.topCoord}, config.protections);
+            console.log(config);
         },
 
         refreshDialog(settings) {
-            this.setDialog(settings, {x: settings.leftCoord, y: settings.topCoord}, this.getProtections());
+            this.setDialog(settings, {x: settings.leftCoord, y: settings.topCoord}, settings.protections);
+            console.log(settings);
         }
     }
 });

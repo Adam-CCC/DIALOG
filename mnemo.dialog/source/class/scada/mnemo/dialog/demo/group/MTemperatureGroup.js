@@ -7,13 +7,25 @@ qx.Mixin.define("scada.mnemo.dialog.demo.group.MTemperatureGroup", {
         gridTempGroup.setSpacing(3);
         gridTempGroup.setColumnAlign(0, "left", "middle");
         this.tempGroup.setLayout(gridTempGroup);
+
+        // Добавляем текстовое поле для вопроса
+        this.tempLabel = new qx.ui.basic.Label("Температура: ");
+        this.tempText = new qx.ui.form.TextField();
+        this.tempGroup.add(this.tempLabel, { row: 0, column: 0 });
+        this.tempGroup.add(this.tempText, { row: 0, column: 1 });
+
+        // Добавляем кнопку "Применить" на всю ширину GroupBox
+        this.applyButtonTemp = new qx.ui.form.Button("Применить");
+        this.tempGroup.add(this.applyButtonTemp, { row: 2, column: 0, colSpan: 2 });
+
     },
 
     properties: {
         propTemp: {
             init: {
                 name: "Temperature",
-                key: "",
+                key: "temperature",
+                protections: "",
                 center: true,
                 leftCoord: 300,
                 topCoord: 300,
@@ -26,5 +38,6 @@ qx.Mixin.define("scada.mnemo.dialog.demo.group.MTemperatureGroup", {
     },
 
     members: {
+
     }
 });
