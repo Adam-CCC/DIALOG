@@ -1,5 +1,5 @@
-qx.Class.define("scada.mnemo.dialog.dialogs.Keyboard", {
-    extend: scada.mnemo.dialog.dialogs.Dialog,
+qx.Class.define("scada.mnemo.dialog.Keyboard", {
+    extend: scada.mnemo.dialog.Dialog,
 
     members: {
         _createWidgetContent(){

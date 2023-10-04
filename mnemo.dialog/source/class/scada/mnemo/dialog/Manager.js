@@ -1,4 +1,4 @@
-qx.Class.define("scada.mnemo.dialog.dialogs.Manager", {
+qx.Class.define("scada.mnemo.dialog.Manager", {
     extend : qx.core.Object,
 
     destruct() {

@@ -49,14 +49,14 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
         __prop: null,
 
         __changeController(e) {
-            let data = this.__data;
             const selectedButton = e.getData()[0];
             const value = selectedButton.getLabel();
             if(value == "Заблокировать") {
                 this.__prop.protections = {"aaa":1};
-                console.log(data);
+                this.setBufferData(this.__prop.protections);
             } else if (value == "Разблокировать") {
-                this.__prop.protections = {"aaa":0};  
+                this.__prop.protections = {"aaa":0};
+                this.setBufferData(this.__prop.protections);
             }
         },
 

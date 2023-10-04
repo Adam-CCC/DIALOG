@@ -1,5 +1,5 @@
-qx.Class.define("scada.mnemo.dialog.dialogs.HeatResist", {
-    extend: scada.mnemo.dialog.dialogs.Dialog,
+qx.Class.define("scada.mnemo.dialog.HeatResist", {
+    extend: scada.mnemo.dialog.Dialog,
 
     members: {
         _sorts: null,

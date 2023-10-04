@@ -1,4 +1,4 @@
-qx.Mixin.define("scada.mnemo.dialog.dialogs.MConfirmation", {
+qx.Mixin.define("scada.mnemo.dialog.MConfirmation", {
     destruct() {
         if (this.__sureDialog){
             this.__sureDialog.dispose();

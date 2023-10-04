@@ -1,5 +1,5 @@
-qx.Class.define("scada.mnemo.dialog.dialogs.Page", {
-    extend: scada.mnemo.dialog.dialogs.Dialog,
+qx.Class.define("scada.mnemo.dialog.Page", {
+    extend: scada.mnemo.dialog.Dialog,
 
     members: {
         /*

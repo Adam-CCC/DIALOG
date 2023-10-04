@@ -14,9 +14,14 @@ qx.Class.define("scada.mnemo.dialog.demo.GeneralDialogs", {
         super(new qx.ui.layout.VBox());
     },
 
+    properties: {
+        bufferData: {
+            init: {}
+        }
+    },
+
     members: {
         __currentBox: null,
-        __data: {},
 
         addGroupBox(groupName){
             if(this.__currentBox != null){
@@ -35,12 +40,12 @@ qx.Class.define("scada.mnemo.dialog.demo.GeneralDialogs", {
         },
 
         _openControlVE() {
-            this.managerRadioBtn.addListener("changeSelection", function (e) {
-                const selectedButton = e.getData()[0];
-                const value = selectedButton.getLabel();
-                if(value == "Открыть диалог") {
+            this.radioOpenDialog.addListener("changeValue", function (e) {
+                const selectedButton = e.getTarget();
+                const isSelected = selectedButton.getValue();
+                if(isSelected) {
                     this.addGroupBox(this.controlVEGroup);
-                    this.chkCenterFunc(this.getPropControlVE())
+                    this.chkCenterFunc(this.getPropControlVE());
                     this.setDialog(this.getPropControlVE());
                 }
             }, this);
@@ -48,10 +53,10 @@ qx.Class.define("scada.mnemo.dialog.demo.GeneralDialogs", {
         },
 
         _openCalculate() {
-            this.managerRadioBtn.addListener("changeSelection", function (e) {
-                const selectedButton = e.getData()[0];
-                const value = selectedButton.getLabel();
-                if(value == "Калькулятор") {
+            this.radioCalculate.addListener("changeValue", function (e) {
+                const selectedButton = e.getTarget();
+                const isSelected = selectedButton.getValue();
+                if(isSelected) {
                     this.addGroupBox(this.сalcGroup);
                     this.chkCenterFunc(this.getPropCalculate());
                     this.setDialog(this.getPropCalculate());
@@ -61,10 +66,10 @@ qx.Class.define("scada.mnemo.dialog.demo.GeneralDialogs", {
         },
 
         _openQuestion() {
-            this.managerRadioBtn.addListener("changeSelection", function (e) {
-                const selectedButton = e.getData()[0];
-                const value = selectedButton.getLabel();
-                if(value == "Вопрос") {
+            this.radioQuestion.addListener("changeValue", function (e) {
+                const selectedButton = e.getTarget();
+                const isSelected = selectedButton.getValue();
+                if(isSelected) {
                     this.addGroupBox(this.questGroup);
                     this.chkCenterFunc(this.getPropQuest());
                     this.setDialog(this.getPropQuest());
@@ -74,10 +79,10 @@ qx.Class.define("scada.mnemo.dialog.demo.GeneralDialogs", {
         },
 
         _openDoubleQuestion() {
-            this.managerRadioBtn.addListener("changeSelection", function (e) {
-                const selectedButton = e.getData()[0];
-                const value = selectedButton.getLabel();
-                if(value == "Двойной вопрос") {
+            this.radioDoubleQuestion.addListener("changeValue", function (e) {
+                const selectedButton = e.getTarget();
+                const isSelected = selectedButton.getValue();
+                if(isSelected) {
                     this.addGroupBox(this.dblQuestGroup);
                     this.chkCenterFunc(this.getPropDblQuest());
                     this.setDialog(this.getPropDblQuest());
@@ -87,10 +92,10 @@ qx.Class.define("scada.mnemo.dialog.demo.GeneralDialogs", {
         },
 
         _openTemperature() {
-            this.managerRadioBtn.addListener("changeSelection", function (e) {
-                const selectedButton = e.getData()[0];
-                const value = selectedButton.getLabel();
-                if(value == "Температура") {
+            this.radioTemperature.addListener("changeValue", function (e) {
+                const selectedButton = e.getTarget();
+                const isSelected = selectedButton.getValue();
+                if(isSelected) {
                     this.addGroupBox(this.tempGroup);
                     this.chkCenterFunc(this.getPropTemp());
                     this.setDialog(this.getPropTemp());

@@ -39,12 +39,12 @@ qx.Mixin.define("scada.mnemo.dialog.demo.group.MTemperatureGroup", {
     },
 
     members: {
-        __tempValue: null,
-
         __changeDataTemp() {
             if(this.tempText.getValue() != null){
-                this.__tempValue = this.tempText.getValue();
-
+                const data = {
+                    temperature: this.tempText.getValue()
+                }
+                this.setBufferData(data); 
                 this.refreshDialog(this.getPropTemp());
             }
         },

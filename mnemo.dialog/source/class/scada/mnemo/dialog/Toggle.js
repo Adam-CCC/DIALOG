@@ -1,5 +1,5 @@
-qx.Class.define("scada.mnemo.dialog.dialogs.Toggle", {
-    extend: scada.mnemo.dialog.dialogs.Dialog,
+qx.Class.define("scada.mnemo.dialog.Toggle", {
+    extend: scada.mnemo.dialog.Dialog,
 
     members: {
         _onConfirm(){

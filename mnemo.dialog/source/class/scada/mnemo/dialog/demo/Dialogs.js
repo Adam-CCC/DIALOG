@@ -8,16 +8,16 @@ qx.Class.define("scada.mnemo.dialog.demo.Dialogs", {
                     return new scada.mnemo.dialog.signal.ControlVE();
                     break;
                 case "Calculate":
-                    return new scada.mnemo.dialog.dialogs.KeyboardDecimal();
+                    return new scada.mnemo.dialog.KeyboardDecimal();
                     break;
                 case "Question": 
-                    return new scada.mnemo.dialog.dialogs.Question();
+                    return new scada.mnemo.dialog.Question();
                     break;
                 case "DoubleQuestion":
-                    return new scada.mnemo.dialog.dialogs.QuestionSwitch();
+                    return new scada.mnemo.dialog.QuestionSwitch();
                     break;
                 case "Temperature":
-                    return new scada.mnemo.dialog.dialogs.TempShow();
+                    return new scada.mnemo.dialog.TempShow();
                     break;
                 default:
                     throw console.error("Not found dialog " + config);                

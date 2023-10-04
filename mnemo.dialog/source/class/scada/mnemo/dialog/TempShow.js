@@ -1,5 +1,5 @@
-qx.Class.define("scada.mnemo.dialog.dialogs.TempShow", {
-    extend: scada.mnemo.dialog.dialogs.Dialog,
+qx.Class.define("scada.mnemo.dialog.TempShow", {
+    extend: scada.mnemo.dialog.Dialog,
 
     members: {
         _onLoadSettings(settings){

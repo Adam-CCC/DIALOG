@@ -26,8 +26,8 @@ qx.Class.define("scada.widget.zoom.Layer", {
             const bounds = this.getBounds();
             const container = this.getChildren()[0];
 
-            const offsetX = this.__calcOffset(bounds.width, qxEvent.getViewportLeft());
-            container.scrollByX(offsetX);
+            const offsetBufferData = this.__calcOffset(bounds.width, qxEvent.getViewportLeft());
+            container.scrollByX(offsetBufferData);
 
             const offsetY = this.__calcOffset(bounds.height, qxEvent.getViewportTop());
             container.scrollByY(offsetY);
