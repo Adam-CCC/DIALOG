@@ -1,7 +1,7 @@
 qx.Mixin.define("scada.mnemo.dialog.demo.MFabricDialog", {
 
     construct() {
-        this.groupDialogs = new qx.ui.groupbox.GroupBox("Диалоги");
+        this.groupDialogs = new qx.ui.groupbox.GroupBox(this.basename);
         this.groupDialogs.setLayout(new qx.ui.layout.VBox());
 
         this.radioOpenDialog = new qx.ui.form.RadioButton("Открыть диалог");
@@ -27,7 +27,6 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MFabricDialog", {
             this.__manager.setDialogFactory(this.__dialogs);
             this.__manager.setDialog(config);
             this.__manager.openDialog({x: config.leftCoord, y: config.topCoord}, config.protections);
-            console.log(config);
         },
 
         refreshDialog(settings) {

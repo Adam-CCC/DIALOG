@@ -2,7 +2,7 @@ qx.Mixin.define("scada.mnemo.dialog.demo.group.MTemperatureGroup", {
 
     construct() {
         //GroupBox "Калькулятор"
-        this.tempGroup = new qx.ui.groupbox.GroupBox("Температура");
+        this.tempGroup = new qx.ui.groupbox.GroupBox(this.getPropTemp().name);
         const gridTempGroup = new qx.ui.layout.Grid(2);
         gridTempGroup.setSpacing(3);
         gridTempGroup.setColumnAlign(0, "left", "middle");
@@ -18,6 +18,7 @@ qx.Mixin.define("scada.mnemo.dialog.demo.group.MTemperatureGroup", {
         this.applyButtonTemp = new qx.ui.form.Button("Применить");
         this.tempGroup.add(this.applyButtonTemp, { row: 2, column: 0, colSpan: 2 });
 
+        this.applyListenerTemp();
     },
 
     properties: {
@@ -38,6 +39,18 @@ qx.Mixin.define("scada.mnemo.dialog.demo.group.MTemperatureGroup", {
     },
 
     members: {
+        __tempValue: null,
 
+        __changeDataTemp() {
+            if(this.tempText.getValue() != null){
+                this.__tempValue = this.tempText.getValue();
+
+                this.refreshDialog(this.getPropTemp());
+            }
+        },
+        
+        applyListenerTemp() {
+            this.applyButtonTemp.addListener("execute", this.__changeDataTemp, this);
+        }
     }
 });

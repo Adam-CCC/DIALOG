@@ -1,7 +1,7 @@
 qx.Mixin.define("scada.mnemo.dialog.demo.group.MCalculateGroup", {
     construct() {
         //GroupBox "Калькулятор"
-        this.сalcGroup = new qx.ui.groupbox.GroupBox("Калькулятор"); 
+        this.сalcGroup = new qx.ui.groupbox.GroupBox(this.getPropCalculate().name); 
         const gridCalcGroup = new qx.ui.layout.Grid(2);
         gridCalcGroup.setSpacing(3);
         gridCalcGroup.setColumnAlign(0, "left", "middle");
@@ -23,8 +23,7 @@ qx.Mixin.define("scada.mnemo.dialog.demo.group.MCalculateGroup", {
         this.applyButtonCacl = new qx.ui.form.Button("Применить");
         this.сalcGroup.add(this.applyButtonCacl, { row: 2, column: 0, colSpan: 2 });
 
-        console.log(this.getByName("MCalculateGroup"));
-
+        this.getMixinName();
         this.applyListener()
     },
 
@@ -47,6 +46,10 @@ qx.Mixin.define("scada.mnemo.dialog.demo.group.MCalculateGroup", {
     },
 
     members: {
+        getMixinName: function() {
+            console.log("Название миксина: " + this.mixinName);
+        },
+
         __changeDataCalc() {
             if(this.precisionTextField.getValue() || this.digitCountTextField.getValue() != NaN){
                 this.getPropCalculate().precision = parseInt(this.precisionTextField.getValue());

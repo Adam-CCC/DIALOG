@@ -1,9 +1,8 @@
-qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
+qx.Class.define("scada.mnemo.dialog.demo.GeneralDialogs", {
     extend : qx.ui.container.Composite,
     include: [
         scada.mnemo.dialog.demo.MFabricDialog,
         scada.mnemo.dialog.demo.MDialogController,
-        scada.mnemo.dialog.demo.MManagerGroupBox,
         scada.mnemo.dialog.demo.group.MControlVEGroup,
         scada.mnemo.dialog.demo.group.MCalculateGroup,
         scada.mnemo.dialog.demo.group.MQuestionGroup,
@@ -15,97 +14,9 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
         super(new qx.ui.layout.VBox());
     },
 
-    properties: {
-        propControlVE : {
-            init: {
-                reset_keys: [
-                {
-                    "label": "",
-                    "key": "<<prefix>>.Квитировать"
-                }
-                // {
-                //   "label": "СБРОС 2",
-                //   "key": "<<prefix>>.Квитировать"
-                // }
-                ],
-                signals: {
-                "ТЕКУЩИЕ ИЗМЕРЕНИЯ": [
-                    {
-                        "label": "Ток фидера",
-                        "key": "<<prefix>>.Интер.I фид",
-                        "subscribe": true
-                    },
-                    {
-                        "label": "Напряжение фидера",
-                        "key": "<<prefix>>.Интер.U фид",
-                        "subscribe": true
-                    },
-                    {
-                        "label": "Напряжение на линии",
-                        "key": "<<prefix>>.Интер.U лин",
-                        "subscribe": true
-                    },
-                    {
-                        "label": "Температура контактного провода",
-                        "key": "<<prefix>>.Интер.t кп",
-                        "subscribe": true
-                    }
-                ],
-                "СТАТУС": [
-                    {
-                        "label": "БВ включен/выключен",
-                        "key": "<<prefix>>.Интер.БВ",
-                        "subscribe": true
-                    },
-        
-                    {
-                        "label": "Цепи сигнализации ВБ не исправны/исправны",
-                        "key": "<<prefix>>.Интер.ЦСИГБВ",
-                        "subscribe": true
-                    },
-        
-                    {
-                        "label": "ОР включен/отключен",
-                        "key": "<<prefix>>.Интер.ОР",
-                        "subscribe": true
-                    }
-                ]
-                },
-                name: "controlVE",
-                control_ve: {
-                key: "aaa",
-                state_key: "bbb"
-                },
-                confirmation: true,
-                avr: {
-                key: "hello"
-                },
-                center: true,
-                leftCoord: 300,
-                topCoord: 300,
-                question: {
-                label: "ЛВ2?",
-                key: "question",
-                answers: {
-                    "Включить": 1,
-                    "Отключить": 0
-                }
-                },
-                key: "bbb",
-                protections: "",
-                protection: {
-                key: "aaa",
-                show_message: true
-                },
-                update: {
-                key: "sss"
-                }
-            }
-        }
-    },
-
     members: {
         __currentBox: null,
+        __data: {},
 
         addGroupBox(groupName){
             if(this.__currentBox != null){
@@ -180,12 +91,9 @@ qx.Class.define("scada.mnemo.dialog.demo.ListDialog", {
                 const selectedButton = e.getData()[0];
                 const value = selectedButton.getLabel();
                 if(value == "Температура") {
-                    const data = {
-                        temperature: 25.5, // Значение для ключа "temperature"
-                    };
                     this.addGroupBox(this.tempGroup);
                     this.chkCenterFunc(this.getPropTemp());
-                    this.setDialog(this.getPropTemp(), data);
+                    this.setDialog(this.getPropTemp());
                 }
             }, this);
             this.groupDialogs.add(this.radioTemperature);

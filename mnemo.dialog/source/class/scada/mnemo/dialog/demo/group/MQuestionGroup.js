@@ -2,7 +2,7 @@ qx.Mixin.define("scada.mnemo.dialog.demo.group.MQuestionGroup", {
 
     construct() {
         //GroupBox "Калькулятор"
-        this.questGroup = new qx.ui.groupbox.GroupBox("Вопрос");
+        this.questGroup = new qx.ui.groupbox.GroupBox(this.getPropQuest().name);
         const gridQuestGroup = new qx.ui.layout.Grid(2);
         gridQuestGroup.setSpacing(3);
         gridQuestGroup.setColumnAlign(0, "left", "middle");

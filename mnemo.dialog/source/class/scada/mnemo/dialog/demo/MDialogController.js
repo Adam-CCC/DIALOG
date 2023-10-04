@@ -1,6 +1,6 @@
 qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
     construct() {
-        this.generalGroup = new qx.ui.groupbox.GroupBox("Общие настройки");
+        this.generalGroup = new qx.ui.groupbox.GroupBox(this.basename + "Settings");
         this.generalGroup.setLayout(new qx.ui.layout.VBox());
 
         this.groupControlDialogs = new qx.ui.groupbox.GroupBox("Управление доступом");
@@ -48,12 +48,13 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
     members: {
         __prop: null,
 
-        __managerAddlistener(e) {
-            console.log(this.__prop);
+        __changeController(e) {
+            let data = this.__data;
             const selectedButton = e.getData()[0];
             const value = selectedButton.getLabel();
             if(value == "Заблокировать") {
                 this.__prop.protections = {"aaa":1};
+                console.log(data);
             } else if (value == "Разблокировать") {
                 this.__prop.protections = {"aaa":0};  
             }
@@ -78,7 +79,7 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
                 // Устанавливаем значение center в false
                 this.__prop.center = true;
 
-                this.refreshDialog(this.__prop)
+                this.refreshDialog(this.__prop);
             } else {
                 this.topInput.setEnabled(true);
                 this.leftInput.setEnabled(true);
@@ -102,8 +103,8 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
             this.btnEnter.removeListener("execute", this.__changePos, this);
             this.btnEnter.addListener("execute", this.__changePos, this);
 
-            this.manager.removeListener("changeSelection", this.__managerAddlistener, this);
-            this.manager.addListener("changeSelection", this.__managerAddlistener, this);
+            this.manager.removeListener("changeSelection", this.__changeController, this);
+            this.manager.addListener("changeSelection", this.__changeController, this);
         }
     }
 });
