@@ -16,6 +16,7 @@ qx.Class.define("scada.mnemo.dialog.QuestionSwitch", {
 
         __updateQuestionLabel(data){
             const value = data[this.__key];
+            console.log(value);
             if (this._isUnknownValue(value)){
                 return "Операция недоступна";
             }
@@ -39,6 +40,9 @@ qx.Class.define("scada.mnemo.dialog.QuestionSwitch", {
             const questionBlock = settings.question;
             this.__key = this.extractOptionFromSettings("key", questionBlock);
             this.__actionLabels = this.__parseAnswers(questionBlock.answers);
+            console.log(questionBlock);
+            console.log(this.__key);
+            console.log(this.__actionLabels);
         },
 
         __applyDefaultChoices(value){
@@ -53,14 +57,18 @@ qx.Class.define("scada.mnemo.dialog.QuestionSwitch", {
                     if (qx.lang.Type.isArray(valueOrValues)){
                         valueOrValues.forEach(value => {
                             result[value] = label;
+                            console.log(result[value]);
                         });
                     }
                     else {
                         result[valueOrValues] = label;
+                        console.log(result[valueOrValues]);
                     }
                 });
+                console.log(result);
                 return result;
             }
+            console.log("null")
             return null;
         }
     }
