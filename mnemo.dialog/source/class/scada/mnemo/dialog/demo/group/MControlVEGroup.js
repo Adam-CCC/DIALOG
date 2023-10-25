@@ -80,10 +80,6 @@ qx.Mixin.define("scada.mnemo.dialog.demo.group.MControlVEGroup", {
                 question: {
                 label: "ЛВ2?",
                 key: "question",
-                answers: {
-                    "Включить": 1,
-                    "Отключить": 0
-                }
                 },
                 key: "bbb",
                 protections: "",

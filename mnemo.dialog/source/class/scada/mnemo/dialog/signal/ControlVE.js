@@ -33,6 +33,7 @@ qx.Class.define("scada.mnemo.dialog.signal.ControlVE", {
         },
 
         __createConfirmWindow(){
+            console.log("Работает veConfirmWin")
             const win = new scada.widget.window.confirm.Dialog();
             win.addListener("confirmed", this._onWindowConfirm, this);
             win.addListener("denied", this._onWindowDeny, this);
@@ -59,6 +60,7 @@ qx.Class.define("scada.mnemo.dialog.signal.ControlVE", {
         },
 
         __createAndAddVEBlock(){
+            console.log("Работает veBlock")
             const layout = new qx.ui.layout.Flow();
             layout.setAlignX("center");
             const block = new qx.ui.container.Composite(layout);
@@ -81,6 +83,7 @@ qx.Class.define("scada.mnemo.dialog.signal.ControlVE", {
         },
 
         _onPressControlVEButton(){
+            console.log("Нажал на Управление ВЭ")
             this._dialogStack.addAfter(this.__veConfirmWin, this._mainWindow);
             this.next();
         },
