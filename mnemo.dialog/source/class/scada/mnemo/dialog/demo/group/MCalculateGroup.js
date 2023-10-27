@@ -23,8 +23,7 @@ qx.Mixin.define("scada.mnemo.dialog.demo.group.MCalculateGroup", {
         this.applyButtonCacl = new qx.ui.form.Button("Применить");
         this.сalcGroup.add(this.applyButtonCacl, { row: 2, column: 0, colSpan: 2 });
 
-        this.getMixinName();
-        this.applyListener()
+        this.applyListener();
     },
 
     properties: {
