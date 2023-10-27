@@ -46,10 +46,6 @@ qx.Mixin.define("scada.mnemo.dialog.demo.group.MCalculateGroup", {
     },
 
     members: {
-        getMixinName: function() {
-            console.log("Название миксина: " + this.mixinName);
-        },
-
         __changeDataCalc() {
             if(this.precisionTextField.getValue() || this.digitCountTextField.getValue() != NaN){
                 this.getPropCalculate().precision = parseInt(this.precisionTextField.getValue());

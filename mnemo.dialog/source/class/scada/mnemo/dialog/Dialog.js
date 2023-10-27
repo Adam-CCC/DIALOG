@@ -131,14 +131,10 @@ qx.Class.define("scada.mnemo.dialog.Dialog", {
         },
 
         next(){
-            console.log("Работает next");
             if (this._dialogStack.indexOf(this._mainWindow) === this._dialogStack.getChildren().length - 1){
-                console.log("Условие 1");
-                this._dialogStack.next();
                 this._onConfirm();
                 this.hide();
             } else {
-                console.log("Условие 2");
                 this._dialogStack.next();
             }
         },
