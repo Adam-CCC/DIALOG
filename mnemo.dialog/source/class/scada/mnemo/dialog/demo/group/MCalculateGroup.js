@@ -31,6 +31,7 @@ qx.Mixin.define("scada.mnemo.dialog.demo.group.MCalculateGroup", {
             init: {
                 name: "Calculate",
                 protections: "",
+                confirmation: true,
                 precision: 5,
                 digit_count: 6,
                 center: true,

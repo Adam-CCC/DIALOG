@@ -27,6 +27,7 @@ qx.Mixin.define("scada.mnemo.dialog.demo.group.MDoubleQuestionGroup", {
                 name: "DoubleQuestion",
                 question: {label: "Вы хотите продолжить?", key: "aaa", answers: {"Включить": ["Да"], "Отключить": ["Нет"]}},
                 protections: "",
+                confirmation: true,
                 center: true,
                 leftCoord: 300,
                 topCoord: 300,

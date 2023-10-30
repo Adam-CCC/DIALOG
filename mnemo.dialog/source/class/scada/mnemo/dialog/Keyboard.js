@@ -5,12 +5,12 @@ qx.Class.define("scada.mnemo.dialog.Keyboard", {
         _createWidgetContent(){
             const window = new scada.widget.Calculator();
             this.__outputData = "";
-            window.addListener("outData", this._onOutputData, this);
+            window.addListener("outData", this.__onOutputData, this);
             window.setInputFieldValue("0");
             this._mainWindow = window;
         },
 
-        _onOutputData(e){
+        __onOutputData(e){
             this.__outputData = e.getData();
             this.next();
         },
