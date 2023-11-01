@@ -45,21 +45,24 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
 
       qx.theme.iconfont.LoadMaterialIcons;
 
-      // const dialogController = new scada.mnemo.dialog.demo.DialogController("Управление окнами");
-      // dialogController.initValue();
+      var border = new qx.ui.decoration.Decorator().set({
+        width: 3,
+        style: "solid",
+        color: "black",
+      });
 
-      var container = new qx.ui.container.Composite(
+      const container = new qx.ui.container.Composite(
         new qx.ui.layout.Canvas()
-      )
+      ).set({
+        decorator: border,
+      });
 
       const listDialog = new scada.mnemo.dialog.demo.GeneralDialogs();
       listDialog.openAllDialog();
 
-      // dialogControlContainer.add(listDialog.setMaket());
-
       container.add(listDialog, {left: 10, top: 10});
-
-      this.getRoot().add(container, { edge: 0 });
+      this.getRoot().add(container, { edge: 10 });
+      console.log(container)
     }
   }
 });

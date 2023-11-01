@@ -30,12 +30,12 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
         this.topSlider = new qx.ui.form.Slider();
 
         // Настройка параметров ползунков
-        this.leftSlider.setMaximum(100); // Максимальное значение для left
+        this.leftSlider.setMaximum(1000); // Максимальное значение для left
         this.leftSlider.setMinimum(0);   // Минимальное значение для left
         this.leftSlider.setValue(0);     // Начальное значение для left
         this.leftSlider.setWidth(200);   // Ширина ползунка (можете настроить по своему усмотрению)
 
-        this.topSlider.setMaximum(100);   // Максимальное значение для top
+        this.topSlider.setMaximum(1000);   // Максимальное значение для top
         this.topSlider.setMinimum(0);     // Минимальное значение для top
         this.topSlider.setValue(0);       // Начальное значение для top
         this.topSlider.setWidth(200);
@@ -57,8 +57,6 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
         this.generalGroup.add(this.btnEnter)
 
         this.add(this.generalGroup);
-        
-        // this.bind("leftSlider.value", this.__prop, "leftCoord");
 
         this.__changePos();
     },
