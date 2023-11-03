@@ -34,23 +34,6 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
         //Ширина и высота документа
         this.documentWidth = document.documentElement.scrollWidth || document.body.scrollWidth;
         this.documentHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
-
-        // // Замыкание для ссылки на переменные
-        // const self = this;
-
-        // // Обработчик изменения размера окна браузера
-        // window.addEventListener("resize", function() {
-        //     // Обработка изменения размера окна браузера
-        //     this.documentWidth = document.documentElement.scrollWidth || document.body.scrollWidth;
-        //     this.documentHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
-
-        //     self.leftSlider.setMaximum(this.documentWidth - 10);
-        //     self.topSlider.setMaximum(this.documentHeight - 10);
-
-        //     // Используйте self.leftSlider и self.topSlider, чтобы избежать ошибки
-        //     console.log("Высота = " + self.leftSlider.getMaximum());
-        //     console.log("Ширина = " + self.topSlider.getMaximum());
-        // });
         
         // Настройка параметров ползунков
         this.leftSlider.setMaximum(this.documentWidth - 10); // Максимальное значение для left
@@ -104,12 +87,14 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
 
         __changePos(){
             this.leftSlider.addListener("changeValue", function (e) {
-                this.__prop.leftCoord = e.getData(); // Обновляем значение leftCoord при изменении ползунка
+                this.__prop.center = false;
+                this.__prop.leftCoord = this.leftSlider.getValue();
                 this.refreshDialog(this.__prop);
             }, this);
             
             this.topSlider.addListener("changeValue", function (e) {
-                this.__prop.topCoord = e.getData(); // Обновляем значение topCoord при изменении ползунка
+                this.__prop.center = false;
+                this.__prop.topCoord = this.topSlider.getValue();
                 this.refreshDialog(this.__prop);
             }, this);
         },
@@ -122,6 +107,7 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
 
                 // Устанавливаем значение center в false
                 this.__prop.center = true;
+                console.log(this.__prop.center)
 
                 this.refreshDialog(this.__prop);
             } else {
@@ -137,8 +123,6 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
         chkCenterFunc(settings){
             this.__prop = settings;
 
-            this.chkCenter.setValue(false);
-
             this.chkCenter.removeListener("changeValue", this.__changeCenter, this);
             this.chkCenter.addListener("changeValue", this.__changeCenter, this);
 
@@ -147,14 +131,13 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
 
             this.manager.removeListener("changeSelection", this.__changeController, this);
             this.manager.addListener("changeSelection", this.__changeController, this);
+
+            this.resetSlider(settings);
         },
 
         __resetWindowSize(){
             this.documentWidth = document.documentElement.scrollWidth || document.body.scrollWidth;
             this.documentHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
-
-            this.leftSlider.resetValue();
-            this.topSlider.resetValue();
 
             this.leftSlider.setMaximum(this.documentWidth - 10);
             this.topSlider.setMaximum(this.documentHeight - 10);
@@ -163,8 +146,13 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
             console.log("Высота" + this.topSlider.getMaximum());
         },
 
-        resetSlider(){
+        resetSlider(settings){
             this.chkCenter.setValue(false);
+            // Сброс положения слайдеров без изменения свойств диалога
+            this.leftSlider.setValue(0);
+            this.topSlider.setValue(0);
+            settings.center = true;
+
             this.__resetWindowSize()
         }
     }

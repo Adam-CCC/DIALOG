@@ -45,17 +45,9 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
 
       qx.theme.iconfont.LoadMaterialIcons;
 
-      var border = new qx.ui.decoration.Decorator().set({
-        width: 3,
-        style: "solid",
-        color: "black",
-      });
-
       const container = new qx.ui.container.Composite(
         new qx.ui.layout.Canvas()
-      ).set({
-        decorator: border,
-      });
+      )
 
       const listDialog = new scada.mnemo.dialog.demo.GeneralDialogs();
       listDialog.openAllDialog();
