@@ -61,8 +61,7 @@ qx.Class.define("scada.mnemo.dialog.demo.Application",
       listDialog.openAllDialog();
 
       container.add(listDialog, {left: 10, top: 10});
-      this.getRoot().add(container, { edge: 10 });
-      console.log(container)
+      this.getRoot().add(container, {left: 0, top: 0, right: 0, bottom: 0});
     }
   }
 });

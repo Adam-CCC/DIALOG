@@ -1,14 +1,16 @@
 qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
     construct() {
+        // Общие настройки "GeneralDialogsSettings"
+
+        //Вывод заголовка родительского GroupBox
         this.generalGroup = new qx.ui.groupbox.GroupBox(this.basename + "Settings");
         this.generalGroup.setLayout(new qx.ui.layout.VBox());
-
+        
         this.groupControlDialogs = new qx.ui.groupbox.GroupBox("Управление доступом");
         this.groupControlDialogs.setLayout(new qx.ui.layout.VBox());
 
         this.radioProtection = new qx.ui.form.RadioButton("Заблокировать");
         this.radioRemoveProtection = new qx.ui.form.RadioButton("Разблокировать");
-
         this.radioProtection.setValue(false);
         this.radioRemoveProtection.setValue(true);
         
@@ -29,13 +31,34 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
         this.leftSlider = new qx.ui.form.Slider();
         this.topSlider = new qx.ui.form.Slider();
 
+        //Ширина и высота документа
+        this.documentWidth = document.documentElement.scrollWidth || document.body.scrollWidth;
+        this.documentHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+
+        // // Замыкание для ссылки на переменные
+        // const self = this;
+
+        // // Обработчик изменения размера окна браузера
+        // window.addEventListener("resize", function() {
+        //     // Обработка изменения размера окна браузера
+        //     this.documentWidth = document.documentElement.scrollWidth || document.body.scrollWidth;
+        //     this.documentHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+
+        //     self.leftSlider.setMaximum(this.documentWidth - 10);
+        //     self.topSlider.setMaximum(this.documentHeight - 10);
+
+        //     // Используйте self.leftSlider и self.topSlider, чтобы избежать ошибки
+        //     console.log("Высота = " + self.leftSlider.getMaximum());
+        //     console.log("Ширина = " + self.topSlider.getMaximum());
+        // });
+        
         // Настройка параметров ползунков
-        this.leftSlider.setMaximum(1000); // Максимальное значение для left
+        this.leftSlider.setMaximum(this.documentWidth - 10); // Максимальное значение для left
         this.leftSlider.setMinimum(0);   // Минимальное значение для left
         this.leftSlider.setValue(0);     // Начальное значение для left
         this.leftSlider.setWidth(200);   // Ширина ползунка (можете настроить по своему усмотрению)
 
-        this.topSlider.setMaximum(1000);   // Максимальное значение для top
+        this.topSlider.setMaximum(this.documentHeight - 10);   // Максимальное значение для top
         this.topSlider.setMinimum(0);     // Минимальное значение для top
         this.topSlider.setValue(0);       // Начальное значение для top
         this.topSlider.setWidth(200);
@@ -124,6 +147,25 @@ qx.Mixin.define("scada.mnemo.dialog.demo.MDialogController", {
 
             this.manager.removeListener("changeSelection", this.__changeController, this);
             this.manager.addListener("changeSelection", this.__changeController, this);
+        },
+
+        __resetWindowSize(){
+            this.documentWidth = document.documentElement.scrollWidth || document.body.scrollWidth;
+            this.documentHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+
+            this.leftSlider.resetValue();
+            this.topSlider.resetValue();
+
+            this.leftSlider.setMaximum(this.documentWidth - 10);
+            this.topSlider.setMaximum(this.documentHeight - 10);
+
+            console.log("Ширина" + this.leftSlider.getValue());
+            console.log("Высота" + this.topSlider.getMaximum());
+        },
+
+        resetSlider(){
+            this.chkCenter.setValue(false);
+            this.__resetWindowSize()
         }
     }
 });

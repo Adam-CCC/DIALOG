@@ -22,11 +22,13 @@ qx.Class.define("scada.mnemo.dialog.demo.GeneralDialogs", {
 
     members: {
         __currentBox: null,
-
+        
         addGroupBox(groupName){
             if(this.__currentBox != null){
                 this.remove(this.__currentBox);
             }
+            this.resetSlider();
+
             this.__currentBox = groupName;
             this.add(this.__currentBox);
         },
